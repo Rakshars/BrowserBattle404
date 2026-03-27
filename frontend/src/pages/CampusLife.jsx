@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Users, Calendar, Trophy, MapPin, 
@@ -8,7 +8,6 @@ import {
 } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import AnimatedSection from '../components/AnimatedSection';
-import { api } from '../api';
 
 const items = [
   { img: '/gallery/img1.jpg', label: 'ACADEMIC BLOCK', desc: 'The iconic B S Narayan Platinum Jubilee Building.', span: 'col-span-2', bg: 'bg-blue-50' },
@@ -133,84 +132,16 @@ const clubs = [
 ];
 
 const events = [
-<<<<<<< HEAD
-  { name: 'Utsav', type: 'Cultural Fest', month: 'February', desc: 'Three days of music, dance, drama, and art celebrating student creativity', participants: '10,000+' },
-  { name: 'Technova', type: 'Tech Fest', month: 'March', desc: 'Annual technical extravaganza with hackathons, robotics, project exhibitions', participants: '8,000+' },
-  { name: 'Sports Day', type: 'Athletics', month: 'January', desc: 'Inter-departmental sports tournament across 20+ disciplines', participants: '3,000+' },
-  { name: 'Innovate', type: 'Startup Fair', month: 'October', desc: 'Student startup showcase, venture pitches, and entrepreneurship talks', participants: '2,500+' },
-  { name: 'Convocation', type: 'Academic', month: 'December', desc: 'Annual degree ceremony celebrating our graduating class achievements', participants: '5,000+' },
-  { name: 'Alumni Meet', type: 'Alumni', month: 'November', desc: 'Grand reunion connecting current students with distinguished alumni', participants: '4,000+' },
-];
-
-const fallbackGalleryItems = [
-  { title: 'Main Building', imageUrl: '', category: 'campus', description: 'The iconic heritage facade of BMSCE' },
-  { title: 'Innovation Lab', imageUrl: '', category: 'labs', description: 'State-of-the-art research facilities' },
-  { title: 'Sports Complex', imageUrl: '', category: 'campus', description: 'Olympic-standard facilities' },
-  { title: 'Central Library', imageUrl: '', category: 'campus', description: '1.5 lakh books and digital resources' },
-  { title: 'Utsav Highlights', imageUrl: '', category: 'events', description: 'Annual cultural extravaganza moments' },
-  { title: 'Coding Hub', imageUrl: '', category: 'labs', description: 'High-performance systems for students' },
-  { title: 'Campus Garden', imageUrl: '', category: 'campus', description: 'Serene green spaces for students' },
-  { title: 'Auditorium', imageUrl: '', category: 'events', description: 'Flagship venue for major programs' },
-];
-
-const collageSpans = ['md:col-span-2', '', '', '', 'md:col-span-2', '', '', ''];
-const placeholderStyles = [
-  'from-blue-900 to-blue-800',
-  'from-purple-900 to-purple-800',
-  'from-green-900 to-green-800',
-  'from-amber-900 to-amber-800',
-  'from-pink-900 to-pink-800',
-  'from-indigo-900 to-indigo-800',
-  'from-teal-900 to-teal-800',
-  'from-red-900 to-red-800',
-=======
   { name: 'Utsav', month: 'MAY', type: 'Cultural', participants: '15,000+', desc: 'One of South India’s largest inter-collegiate cultural fests.' },
   { name: 'Phase Shift', month: 'SEP', type: 'Technical', participants: '10,000+', desc: 'Annual international technical symposium with 100+ events.' },
   { name: 'Kridotsav', month: 'DEC', type: 'Sports', participants: '5,000+', desc: 'Annual inter-departmental sports championship.' },
->>>>>>> 27d893f (Updated Campus Life page)
+  { name: 'Technova', type: 'Tech Fest', month: 'March', desc: 'Annual technical extravaganza with hackathons and robotics.', participants: '8,000+' },
+  { name: 'Sports Day', type: 'Athletics', month: 'January', desc: 'Inter-departmental sports tournament across 20+ disciplines.', participants: '3,000+' },
 ];
 
 export default function CampusLife() {
   const [selectedImg, setSelectedImg] = useState(null);
-<<<<<<< HEAD
-  const [galleryItems, setGalleryItems] = useState(fallbackGalleryItems);
-  const [galleryLoading, setGalleryLoading] = useState(true);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadGallery = async () => {
-      try {
-        const res = await api.get('/gallery');
-        const remoteItems = Array.isArray(res?.data)
-          ? res.data.map((item) => ({
-              _id: item._id,
-              title: item.title,
-              imageUrl: item.imageUrl,
-              category: item.category,
-              description: item.description || `${item.title} - ${item.category}`,
-            }))
-          : [];
-
-        if (isMounted && remoteItems.length) {
-          setGalleryItems(remoteItems);
-        }
-      } catch (error) {
-        // Keep fallback collage if API is unavailable.
-      } finally {
-        if (isMounted) setGalleryLoading(false);
-      }
-    };
-
-    loadGallery();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-=======
   const [selectedClub, setSelectedClub] = useState(null);
->>>>>>> 27d893f (Updated Campus Life page)
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -229,41 +160,6 @@ export default function CampusLife() {
             <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Official Gallery</span>
             <h2 className="font-serif text-5xl font-light text-slate-900">Life at BMSCE</h2>
           </AnimatedSection>
-<<<<<<< HEAD
-
-          {galleryLoading && (
-            <p className="text-center text-slate-500 text-sm mb-6">Loading gallery...</p>
-          )}
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[200px]">
-            {galleryItems.map((item, i) => (
-              <AnimatedSection key={item._id || item.title} delay={i * 0.07} className={collageSpans[i % collageSpans.length]}>
-                <motion.div
-                  className={`rounded-2xl overflow-hidden cursor-pointer group border border-blue-100 hover:border-[#1e3a8a]/30 transition-all duration-300 h-full ${!item.imageUrl ? `bg-gradient-to-br ${placeholderStyles[i % placeholderStyles.length]}` : 'bg-slate-900'}`}
-                  whileHover={{ scale: 1.02 }}
-                  onClick={() => setSelectedImg(item)}
-                >
-                  <div className="w-full h-full relative">
-                    {item.imageUrl ? (
-                      <img
-                        src={item.imageUrl}
-                        alt={item.title}
-                        className="absolute inset-0 w-full h-full object-cover"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center text-5xl">📸</div>
-                    )}
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute inset-0 flex items-end">
-                      <div className="w-full px-4 pb-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                        <div className="text-white font-semibold text-sm">{item.title}</div>
-                        <div className="text-white/80 text-xs mt-1 line-clamp-2">{item.description}</div>
-                        <div className="text-white/70 text-[11px] mt-1 uppercase tracking-wide">{item.category}</div>
-                      </div>
-=======
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[180px]">
             {items.map((item, i) => (
@@ -284,7 +180,6 @@ export default function CampusLife() {
                     <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                       <div className="text-white font-mono text-[10px] tracking-widest uppercase mb-1 drop-shadow-md">OFFICIAL PHOTO</div>
                       <h4 className="text-white font-bold text-sm leading-tight drop-shadow-md">{item.label}</h4>
->>>>>>> 27d893f (Updated Campus Life page)
                     </div>
                   </div>
                 </motion.div>
@@ -310,37 +205,6 @@ export default function CampusLife() {
             </button>
 
             <motion.div
-<<<<<<< HEAD
-              className="bg-slate-900 rounded-3xl p-6 max-w-4xl w-full text-center border border-white/10"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={e => e.stopPropagation()}
-            >
-              {selectedImg.imageUrl ? (
-                <img
-                  src={selectedImg.imageUrl}
-                  alt={selectedImg.title}
-                  className="w-full max-h-[70vh] object-contain rounded-2xl"
-                  referrerPolicy="no-referrer"
-                />
-              ) : (
-                <div className="w-full h-80 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-8xl">📸</div>
-              )}
-
-              <div className="pt-5 text-left">
-                <h3 className="text-white font-serif text-3xl font-light mb-2">{selectedImg.title}</h3>
-                <p className="text-white/80 text-sm">{selectedImg.description}</p>
-              </div>
-
-              <button
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors"
-                onClick={() => setSelectedImg(null)}
-                aria-label="Close image preview"
-              >
-                <X size={18} />
-              </button>
-=======
               className="max-w-5xl w-full bg-white rounded-[2.5rem] overflow-hidden shadow-2xl relative"
               initial={{ scale: 0.9, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -373,7 +237,6 @@ export default function CampusLife() {
                   </div>
                 </div>
               </div>
->>>>>>> 27d893f (Updated Campus Life page)
             </motion.div>
           </motion.div>
         )}
@@ -390,14 +253,9 @@ export default function CampusLife() {
             {clubs.map((club, i) => (
               <AnimatedSection key={club.name} delay={i * 0.08}>
                 <motion.div
-<<<<<<< HEAD
-                  className="bg-white shadow-sm border border-blue-100 rounded-2xl p-6 group hover:border-[#1e3a8a]/30 transition-all duration-300"
-                  whileHover={{ y: -5 }}
-=======
                   className="bg-slate-50/50 border border-slate-100 rounded-[2rem] p-8 group hover:border-blue-200 hover:bg-white hover:shadow-xl transition-all duration-500 cursor-pointer"
                   whileHover={{ y: -8 }}
                   onClick={() => setSelectedClub(club)}
->>>>>>> 27d893f (Updated Campus Life page)
                 >
                   <div className="flex items-start justify-between mb-8">
                     <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center overflow-hidden p-2 group-hover:scale-110 transition-transform duration-500">
@@ -509,13 +367,8 @@ export default function CampusLife() {
             {events.map((ev, i) => (
               <AnimatedSection key={ev.name} delay={i * 0.1}>
                 <motion.div
-<<<<<<< HEAD
-                  className="bg-white shadow-sm border border-blue-100 rounded-2xl p-7 group hover:border-[#1e3a8a]/30 transition-all duration-300 relative overflow-hidden"
-                  whileHover={{ y: -5 }}
-=======
                   className="bg-white border border-slate-100 rounded-[2.5rem] p-10 group hover:border-[#1e3a8a]/30 transition-all duration-500 relative overflow-hidden flex flex-col"
                   whileHover={{ y: -8 }}
->>>>>>> 27d893f (Updated Campus Life page)
                 >
                   <div className="text-slate-300 font-mono text-[40px] font-bold absolute top-6 right-8 leading-none opacity-50">{ev.month}</div>
                   <div className="text-blue-800 text-[10px] font-mono font-bold mb-6 border border-[#1e3a8a]/20 px-3 py-1 rounded-full inline-block w-fit uppercase tracking-widest">{ev.type}</div>
@@ -555,13 +408,8 @@ export default function CampusLife() {
             ].map((a, i) => (
               <AnimatedSection key={a.name} delay={i * 0.06}>
                 <motion.div
-<<<<<<< HEAD
-                  className="bg-white shadow-sm border border-blue-100 rounded-2xl p-5 text-center group hover:border-[#1e3a8a]/30 transition-all duration-300"
-                  whileHover={{ y: -4, scale: 1.02 }}
-=======
                   className="bg-slate-50 border border-slate-100 rounded-2xl p-6 text-center group hover:bg-white hover:border-[#1e3a8a]/30 hover:shadow-xl transition-all duration-300"
                   whileHover={{ y: -4 }}
->>>>>>> 27d893f (Updated Campus Life page)
                 >
                   <div className="text-4xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform">{a.emoji}</div>
                   <div className="text-slate-900 font-bold mb-1 group-hover:text-blue-800 transition-colors uppercase text-[11px] tracking-wider">{a.name}</div>
