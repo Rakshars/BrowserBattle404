@@ -4,7 +4,8 @@ import {
   Users, Calendar, Trophy, MapPin, 
   Music, Camera, Utensils, Heart, 
   ChevronRight, X, Play, Image as ImageIcon,
-  Rocket, Cpu, Palette, Code2, Globe, Laptop, HeartHandshake, Mic2
+  Rocket, Cpu, Palette, Code2, Globe, Laptop, HeartHandshake, Mic2,
+  Instagram
 } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import AnimatedSection from '../components/AnimatedSection';
@@ -28,7 +29,8 @@ const clubs = [
     category: 'Technical', 
     desc: 'BMSCE’s premier AI & Machine Learning club focusing on future-tech innovations, research, and hands-on projects.',
     icon: Cpu,
-    color: 'from-blue-600 to-cyan-400'
+    color: 'from-blue-600 to-cyan-400',
+    instagram: 'https://www.instagram.com/bmsce_augment.ai/'
   },
   { 
     id: 'bullz', 
@@ -37,7 +39,8 @@ const clubs = [
     category: 'Engineering', 
     desc: 'The official Formula Student team of BMSCE. We design, build, and race open-wheel formula-style race cars.',
     icon: Rocket,
-    color: 'from-red-600 to-orange-400'
+    color: 'from-red-600 to-orange-400',
+    instagram: 'https://www.instagram.com/bullzracing_bmsce/'
   },
   { 
     id: 'fac', 
@@ -46,7 +49,8 @@ const clubs = [
     category: 'Cultural', 
     desc: 'A vibrant hub for visual arts, painting, and creative design, fostering artistic expression across the campus.',
     icon: Palette,
-    color: 'from-pink-600 to-rose-400'
+    color: 'from-pink-600 to-rose-400',
+    instagram: 'https://www.instagram.com/bmsce_fac/'
   },
   { 
     id: 'acm', 
@@ -55,7 +59,8 @@ const clubs = [
     category: 'Technical', 
     desc: 'The BMSCE chapter of the Association for Computing Machinery, promoting computing as a science and profession.',
     icon: Code2,
-    color: 'from-indigo-600 to-blue-400'
+    color: 'from-indigo-600 to-blue-400',
+    instagram: 'https://www.instagram.com/bmsce_acm/'
   },
   { 
     id: 'gdg', 
@@ -64,7 +69,8 @@ const clubs = [
     category: 'Technical', 
     desc: 'A community for students interested in Google developer technologies, hosting workshops, hackathons, and talks.',
     icon: Laptop,
-    color: 'from-yellow-500 to-green-500'
+    color: 'from-yellow-500 to-green-500',
+    instagram: 'https://www.instagram.com/gdg_bmsce/'
   },
   { 
     id: 'literary', 
@@ -73,7 +79,8 @@ const clubs = [
     category: 'Literary', 
     desc: 'The primary society for debating, creative writing, and literary analysis, representing BMSCE at top national fests.',
     icon: Mic2,
-    color: 'from-slate-700 to-slate-500'
+    color: 'from-slate-700 to-slate-500',
+    instagram: 'https://www.instagram.com/bmsce.inksanity/'
   },
   { 
     id: 'isrc', 
@@ -82,7 +89,8 @@ const clubs = [
     category: 'Research', 
     desc: 'Information Security and Research Cell, dedicated to cybersecurity, ethical hacking, and digital privacy research.',
     icon: Globe,
-    color: 'from-cyan-600 to-blue-500'
+    color: 'from-cyan-600 to-blue-500',
+    instagram: 'https://www.instagram.com/bmsce_isrc/'
   },
   { 
     id: 'rocktry', 
@@ -91,7 +99,8 @@ const clubs = [
     category: 'Aerospace', 
     desc: 'A specialized club for model rocketry and aerospace engineering, designing and launching high-power model rockets.',
     icon: Rocket,
-    color: 'from-orange-500 to-amber-500'
+    color: 'from-orange-500 to-amber-500',
+    instagram: 'https://www.instagram.com/rocketry.bmsce/'
   },
   { 
     id: 'leo', 
@@ -100,7 +109,8 @@ const clubs = [
     category: 'Social', 
     desc: 'The youth wing of Lions Club International, focusing on leadership, experience, and opportunity through community service.',
     icon: HeartHandshake,
-    color: 'from-emerald-600 to-teal-400'
+    color: 'from-emerald-600 to-teal-400',
+    instagram: 'https://www.instagram.com/leoclubbmsce/'
   },
   { 
     id: 'pentagram', 
@@ -109,7 +119,8 @@ const clubs = [
     category: 'Technical', 
     desc: 'The official Mathematics Club of BMSCE, exploring the beauty of numbers and logic through puzzles and competitions.',
     icon: Cpu,
-    color: 'from-violet-600 to-purple-400'
+    color: 'from-violet-600 to-purple-400',
+    instagram: 'https://www.instagram.com/bmsce_pentagram/'
   },
   { 
     id: 'utsav', 
@@ -118,7 +129,8 @@ const clubs = [
     category: 'Cultural', 
     desc: 'The core committee behind South India’s biggest inter-collegiate cultural extravaganza, BMSCE UTSAV.',
     icon: Music,
-    color: 'from-amber-500 to-pink-500'
+    color: 'from-amber-500 to-pink-500',
+    instagram: 'https://www.instagram.com/bmsce_utsav/'
   },
   { 
     id: 'phaseshift', 
@@ -127,7 +139,8 @@ const clubs = [
     category: 'Technical', 
     desc: 'The official group managing BMSCE’s annual international technical symposium, bridging industry and academia.',
     icon: Code2,
-    color: 'from-blue-700 to-indigo-500'
+    color: 'from-blue-700 to-indigo-500',
+    instagram: 'https://www.instagram.com/bmsce_phaseshift/'
   },
 ];
 
@@ -340,13 +353,16 @@ export default function CampusLife() {
                       </p>
                     </div>
 
-                    <div className="pt-6 border-t border-slate-100 grid grid-cols-2 gap-4">
-                      <button className="flex items-center justify-center gap-2 py-3 bg-blue-50 text-blue-800 rounded-2xl text-xs font-bold hover:bg-blue-100 transition-colors">
+                    <div className="pt-6 border-t border-slate-100">
+                      <a 
+                        href={selectedClub.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex items-center justify-center gap-3 py-4 bg-gradient-to-r ${selectedClub.color} text-white rounded-2xl text-sm font-bold hover:shadow-xl hover:scale-[1.02] transition-all shadow-lg shadow-blue-900/20 w-full`}
+                      >
+                        <Instagram size={18} />
                         Follow Updates
-                      </button>
-                      <button className="flex items-center justify-center gap-2 py-3 bg-[#1e3a8a] text-white rounded-2xl text-xs font-bold hover:bg-blue-800 transition-colors shadow-lg shadow-blue-900/20">
-                        Join Society
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </div>
