@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Star, Linkedin, Globe, Users, Award, MapPin } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import AnimatedSection from '../components/AnimatedSection';
 import AnimatedCounter from '../components/AnimatedCounter';
+import { api } from '../api';
 
 const notableAlumni = [
   { name: 'Arun Kumar N.', batch: '1988 · Mechanical', role: 'VP Engineering, Google India', location: 'Bengaluru', img: '👨‍💼', achievement: 'Led Google\'s India engineering center to 3,000 engineers' },
@@ -34,6 +35,81 @@ const chapters = [
 
 export default function Alumni() {
   const [activeTab, setActiveTab] = useState('notable');
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+  const [registeredAlumni, setRegisteredAlumni] = useState([]);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    studyStartYear: '',
+    studyEndYear: '',
+    graduationYear: '',
+    course: '',
+    currentStatus: '',
+  });
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadAlumni = async () => {
+      try {
+        const res = await api.get('/alumni');
+        if (isMounted && Array.isArray(res?.data)) {
+          setRegisteredAlumni(res.data);
+        }
+      } catch (error) {
+        // Keep page functional even if API fails.
+      }
+    };
+
+    loadAlumni();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setSubmitMessage('');
+    setIsSubmitting(true);
+
+    try {
+      const payload = {
+        ...formData,
+        graduationYear: Number(formData.graduationYear),
+        studyStartYear: formData.studyStartYear ? Number(formData.studyStartYear) : undefined,
+        studyEndYear: formData.studyEndYear ? Number(formData.studyEndYear) : undefined,
+      };
+
+      const res = await api.post('/alumni/register', payload);
+      if (res?.data) {
+        setRegisteredAlumni((prev) => [res.data, ...prev]);
+      }
+
+      setSubmitMessage('Registration submitted successfully. Welcome to BMSCE Alumni Network!');
+      setFormData({
+        name: '',
+        email: '',
+        studyStartYear: '',
+        studyEndYear: '',
+        graduationYear: '',
+        course: '',
+        currentStatus: '',
+      });
+      setActiveTab('registered');
+    } catch (error) {
+      setSubmitMessage(error.message || 'Failed to submit registration. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -45,7 +121,7 @@ export default function Alumni() {
       />
 
       {/* Stats */}
-      <section className="py-20 bg-white shadow-sm border-blue-50 border-b border-blue-100">
+      <section className="py-20 bg-white shadow-sm border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -70,6 +146,7 @@ export default function Alumni() {
               { id: 'notable', label: 'Notable Alumni' },
               { id: 'testimonials', label: 'Testimonials' },
               { id: 'chapters', label: 'Global Chapters' },
+              { id: 'registered', label: 'Registered Alumni' },
             ].map(tab => (
               <button
                 key={tab.id}
@@ -91,7 +168,7 @@ export default function Alumni() {
               {notableAlumni.map((a, i) => (
                 <AnimatedSection key={a.name} delay={i * 0.08}>
                   <motion.div
-                    className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-6 group hover:border-[#1e3a8a]/30 transition-all duration-300"
+                    className="bg-white shadow-sm border border-blue-100 rounded-2xl p-6 group hover:border-[#1e3a8a]/30 transition-all duration-300"
                     whileHover={{ y: -6 }}
                   >
                     <div className="flex items-start gap-4 mb-4">
@@ -120,7 +197,7 @@ export default function Alumni() {
               {testimonials.map((t, i) => (
                 <AnimatedSection key={t.name} delay={i * 0.1}>
                   <motion.div
-                    className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-7 hover:border-[#1e3a8a]/20 transition-all duration-300"
+                    className="bg-white shadow-sm border border-blue-100 rounded-2xl p-7 hover:border-[#1e3a8a]/20 transition-all duration-300"
                     whileHover={{ y: -5 }}
                   >
                     <div className="flex gap-1 mb-4">
@@ -169,6 +246,34 @@ export default function Alumni() {
               ))}
             </motion.div>
           )}
+
+          {/* Registered Alumni */}
+          {activeTab === 'registered' && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {registeredAlumni.length === 0 && (
+                <div className="md:col-span-2 lg:col-span-3 text-center text-slate-500 border border-blue-100 rounded-2xl py-12">
+                  No registrations yet. Be the first to register.
+                </div>
+              )}
+              {registeredAlumni.map((a, i) => (
+                <AnimatedSection key={a._id || `${a.email}-${i}`} delay={i * 0.05}>
+                  <motion.div
+                    className="bg-white shadow-sm border border-blue-100 rounded-2xl p-6 hover:border-[#1e3a8a]/30 transition-all duration-300"
+                    whileHover={{ y: -5 }}
+                  >
+                    <h3 className="text-slate-900 font-semibold">{a.name}</h3>
+                    <p className="text-slate-500 text-sm mt-1">{a.email}</p>
+                    <div className="text-blue-800 text-xs font-mono mt-3">{a.course}</div>
+                    <div className="text-slate-600 text-sm mt-2">
+                      Studied: {a.studyStartYear || 'N/A'} - {a.studyEndYear || a.graduationYear}
+                    </div>
+                    <div className="text-slate-600 text-sm">Graduated: {a.graduationYear}</div>
+                    <p className="text-slate-700 text-sm mt-3 leading-relaxed">Now: {a.currentStatus}</p>
+                  </motion.div>
+                </AnimatedSection>
+              ))}
+            </motion.div>
+          )}
         </div>
       </section>
 
@@ -181,7 +286,9 @@ export default function Alumni() {
               Stay connected with your alma mater. Network, mentor students, and give back to the community that shaped you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="btn-primary">Register Now <ArrowRight size={16} /></button>
+              <button className="btn-primary" onClick={() => { setSubmitMessage(''); setIsRegisterOpen(true); }}>
+                Register Now <ArrowRight size={16} />
+              </button>
               <button className="btn-outline border-[#1e3a8a]/30 text-blue-800">
                 <Linkedin size={16} /> Join LinkedIn Group
               </button>
@@ -189,6 +296,116 @@ export default function Alumni() {
           </AnimatedSection>
         </div>
       </section>
+
+      <AnimatePresence>
+        {isRegisterOpen && (
+          <motion.div
+            className="fixed inset-0 z-[220] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsRegisterOpen(false)}
+          >
+            <motion.div
+              className="w-full max-w-2xl bg-white rounded-3xl p-6 sm:p-8 border border-blue-100 shadow-xl"
+              initial={{ y: 24, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 24, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className="font-serif text-3xl text-slate-900 font-light">Alumni Registration</h3>
+              <p className="text-slate-600 mt-2 mb-6">Share your journey and stay connected with BMSCE.</p>
+
+              <form onSubmit={handleRegister} className="grid sm:grid-cols-2 gap-4">
+                <input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Full Name"
+                  required
+                  className="sm:col-span-2 border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Email Address"
+                  required
+                  className="sm:col-span-2 border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <input
+                  type="number"
+                  name="studyStartYear"
+                  value={formData.studyStartYear}
+                  onChange={handleInputChange}
+                  placeholder="Study Start Year (e.g. 2016)"
+                  min="1900"
+                  max="2100"
+                  className="border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <input
+                  type="number"
+                  name="studyEndYear"
+                  value={formData.studyEndYear}
+                  onChange={handleInputChange}
+                  placeholder="Study End Year (e.g. 2020)"
+                  min="1900"
+                  max="2100"
+                  className="border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <input
+                  type="number"
+                  name="graduationYear"
+                  value={formData.graduationYear}
+                  onChange={handleInputChange}
+                  placeholder="Graduation Year"
+                  min="1900"
+                  max="2100"
+                  required
+                  className="border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <input
+                  name="course"
+                  value={formData.course}
+                  onChange={handleInputChange}
+                  placeholder="What did you study?"
+                  required
+                  className="border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <textarea
+                  name="currentStatus"
+                  value={formData.currentStatus}
+                  onChange={handleInputChange}
+                  placeholder="What are you doing now?"
+                  required
+                  rows={4}
+                  className="sm:col-span-2 border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20 resize-none"
+                />
+
+                {submitMessage && (
+                  <div className="sm:col-span-2 text-sm text-slate-700 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3">
+                    {submitMessage}
+                  </div>
+                )}
+
+                <div className="sm:col-span-2 flex flex-col sm:flex-row gap-3 justify-end mt-2">
+                  <button
+                    type="button"
+                    className="px-5 py-2.5 rounded-full border border-blue-100 text-slate-600"
+                    onClick={() => setIsRegisterOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn-primary" disabled={isSubmitting}>
+                    {isSubmitting ? 'Submitting...' : 'Submit Registration'} <ArrowRight size={16} />
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

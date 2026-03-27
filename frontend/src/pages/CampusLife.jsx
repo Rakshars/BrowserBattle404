@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Music, Code, Trophy, Palette, Users, Dumbbell, Camera, BookOpen } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import AnimatedSection from '../components/AnimatedSection';
+import { api } from '../api';
 
 const clubs = [
   { icon: Code, name: 'BMSIT Coding Club', members: 420, category: 'Technical', desc: 'Weekly hackathons, competitive programming, and industry workshops.' },
@@ -24,19 +25,66 @@ const events = [
   { name: 'Alumni Meet', type: 'Alumni', month: 'November', desc: 'Grand reunion connecting current students with distinguished alumni', participants: '4,000+' },
 ];
 
-const galleryItems = [
-  { label: 'Main Building', emoji: '🏛️', span: 'col-span-2', bg: 'from-blue-900 to-blue-800', desc: 'The iconic heritage facade of BMSCE' },
-  { label: 'Innovation Lab', emoji: '🔬', span: '', bg: 'from-purple-900 to-purple-800', desc: 'State-of-the-art research facilities' },
-  { label: 'Sports Complex', emoji: '🏋️', span: '', bg: 'from-green-900 to-green-800', desc: 'Olympic-standard facilities' },
-  { label: 'Central Library', emoji: '📚', span: '', bg: 'from-amber-900 to-amber-800', desc: '1.5 lakh books & digital resources' },
-  { label: 'Utsav 2024', emoji: '🎭', span: 'col-span-2', bg: 'from-pink-900 to-pink-800', desc: 'Annual cultural extravaganza' },
-  { label: 'Coding Hub', emoji: '💻', span: '', bg: 'from-indigo-900 to-indigo-800', desc: '2000+ workstations for students' },
-  { label: 'Campus Garden', emoji: '🌿', span: '', bg: 'from-teal-900 to-teal-800', desc: 'Serene green spaces for students' },
-  { label: 'Auditorium', emoji: '🎪', span: '', bg: 'from-red-900 to-red-800', desc: '2,000 seat air-conditioned hall' },
+const fallbackGalleryItems = [
+  { title: 'Main Building', imageUrl: '', category: 'campus', description: 'The iconic heritage facade of BMSCE' },
+  { title: 'Innovation Lab', imageUrl: '', category: 'labs', description: 'State-of-the-art research facilities' },
+  { title: 'Sports Complex', imageUrl: '', category: 'campus', description: 'Olympic-standard facilities' },
+  { title: 'Central Library', imageUrl: '', category: 'campus', description: '1.5 lakh books and digital resources' },
+  { title: 'Utsav Highlights', imageUrl: '', category: 'events', description: 'Annual cultural extravaganza moments' },
+  { title: 'Coding Hub', imageUrl: '', category: 'labs', description: 'High-performance systems for students' },
+  { title: 'Campus Garden', imageUrl: '', category: 'campus', description: 'Serene green spaces for students' },
+  { title: 'Auditorium', imageUrl: '', category: 'events', description: 'Flagship venue for major programs' },
+];
+
+const collageSpans = ['md:col-span-2', '', '', '', 'md:col-span-2', '', '', ''];
+const placeholderStyles = [
+  'from-blue-900 to-blue-800',
+  'from-purple-900 to-purple-800',
+  'from-green-900 to-green-800',
+  'from-amber-900 to-amber-800',
+  'from-pink-900 to-pink-800',
+  'from-indigo-900 to-indigo-800',
+  'from-teal-900 to-teal-800',
+  'from-red-900 to-red-800',
 ];
 
 export default function CampusLife() {
   const [selectedImg, setSelectedImg] = useState(null);
+  const [galleryItems, setGalleryItems] = useState(fallbackGalleryItems);
+  const [galleryLoading, setGalleryLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadGallery = async () => {
+      try {
+        const res = await api.get('/gallery');
+        const remoteItems = Array.isArray(res?.data)
+          ? res.data.map((item) => ({
+              _id: item._id,
+              title: item.title,
+              imageUrl: item.imageUrl,
+              category: item.category,
+              description: item.description || `${item.title} - ${item.category}`,
+            }))
+          : [];
+
+        if (isMounted && remoteItems.length) {
+          setGalleryItems(remoteItems);
+        }
+      } catch (error) {
+        // Keep fallback collage if API is unavailable.
+      } finally {
+        if (isMounted) setGalleryLoading(false);
+      }
+    };
+
+    loadGallery();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -56,22 +104,37 @@ export default function CampusLife() {
             <p className="text-slate-600 mt-4">Click any image to explore</p>
           </AnimatedSection>
 
-          <div className="grid grid-cols-3 gap-4">
+          {galleryLoading && (
+            <p className="text-center text-slate-500 text-sm mb-6">Loading gallery...</p>
+          )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[200px]">
             {galleryItems.map((item, i) => (
-              <AnimatedSection key={item.label} delay={i * 0.07} className={item.span}>
+              <AnimatedSection key={item._id || item.title} delay={i * 0.07} className={collageSpans[i % collageSpans.length]}>
                 <motion.div
-                  className={`bg-gradient-to-br ${item.bg} rounded-2xl overflow-hidden cursor-pointer group 
-                              border border-blue-100 hover:border-[#1e3a8a]/30 transition-all duration-300
-                              ${item.span === 'col-span-2' ? 'h-52' : 'h-44'}`}
+                  className={`rounded-2xl overflow-hidden cursor-pointer group border border-blue-100 hover:border-[#1e3a8a]/30 transition-all duration-300 h-full ${!item.imageUrl ? `bg-gradient-to-br ${placeholderStyles[i % placeholderStyles.length]}` : 'bg-slate-900'}`}
                   whileHover={{ scale: 1.02 }}
                   onClick={() => setSelectedImg(item)}
                 >
-                  <div className="w-full h-full flex flex-col items-center justify-center relative">
-                    <div className="text-5xl mb-3 group-hover:scale-110 transition-transform duration-500">{item.emoji}</div>
-                    <div className="text-slate-900 font-semibold text-center px-4">{item.label}</div>
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-end">
-                      <div className="w-full px-4 pb-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <div className="text-slate-600 text-xs text-center">{item.desc}</div>
+                  <div className="w-full h-full relative">
+                    {item.imageUrl ? (
+                      <img
+                        src={item.imageUrl}
+                        alt={item.title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center text-5xl">📸</div>
+                    )}
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 flex items-end">
+                      <div className="w-full px-4 pb-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                        <div className="text-white font-semibold text-sm">{item.title}</div>
+                        <div className="text-white/80 text-xs mt-1 line-clamp-2">{item.description}</div>
+                        <div className="text-white/70 text-[11px] mt-1 uppercase tracking-wide">{item.category}</div>
                       </div>
                     </div>
                   </div>
@@ -93,20 +156,34 @@ export default function CampusLife() {
             onClick={() => setSelectedImg(null)}
           >
             <motion.div
-              className={`bg-gradient-to-br ${selectedImg.bg} rounded-3xl p-16 max-w-lg w-full text-center`}
+              className="bg-slate-900 rounded-3xl p-6 max-w-4xl w-full text-center border border-white/10"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               onClick={e => e.stopPropagation()}
             >
-              <div className="text-8xl mb-6">{selectedImg.emoji}</div>
-              <h3 className="text-slate-900 font-serif text-3xl font-light mb-3">{selectedImg.label}</h3>
-              <p className="text-slate-600">{selectedImg.desc}</p>
+              {selectedImg.imageUrl ? (
+                <img
+                  src={selectedImg.imageUrl}
+                  alt={selectedImg.title}
+                  className="w-full max-h-[70vh] object-contain rounded-2xl"
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <div className="w-full h-80 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-8xl">📸</div>
+              )}
+
+              <div className="pt-5 text-left">
+                <h3 className="text-white font-serif text-3xl font-light mb-2">{selectedImg.title}</h3>
+                <p className="text-white/80 text-sm">{selectedImg.description}</p>
+              </div>
+
               <button
-                className="mt-8 bg-white/10 text-slate-900 px-6 py-2 rounded-full hover:bg-white/20 transition-colors"
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors"
                 onClick={() => setSelectedImg(null)}
+                aria-label="Close image preview"
               >
-                Close
+                <X size={18} />
               </button>
             </motion.div>
           </motion.div>
@@ -124,7 +201,7 @@ export default function CampusLife() {
             {clubs.map((club, i) => (
               <AnimatedSection key={club.name} delay={i * 0.08}>
                 <motion.div
-                  className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-6 group hover:border-[#1e3a8a]/30 transition-all duration-300"
+                  className="bg-white shadow-sm border border-blue-100 rounded-2xl p-6 group hover:border-[#1e3a8a]/30 transition-all duration-300"
                   whileHover={{ y: -5 }}
                 >
                   <div className="flex items-start justify-between mb-4">
@@ -154,7 +231,7 @@ export default function CampusLife() {
             {events.map((ev, i) => (
               <AnimatedSection key={ev.name} delay={i * 0.1}>
                 <motion.div
-                  className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-7 group hover:border-[#1e3a8a]/30 transition-all duration-300 relative overflow-hidden"
+                  className="bg-white shadow-sm border border-blue-100 rounded-2xl p-7 group hover:border-[#1e3a8a]/30 transition-all duration-300 relative overflow-hidden"
                   whileHover={{ y: -5 }}
                 >
                   <div className="absolute top-4 right-5 text-gray-700 font-mono text-xs">{ev.month}</div>
@@ -192,7 +269,7 @@ export default function CampusLife() {
             ].map((a, i) => (
               <AnimatedSection key={a.name} delay={i * 0.06}>
                 <motion.div
-                  className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-5 text-center group hover:border-[#1e3a8a]/30 transition-all duration-300"
+                  className="bg-white shadow-sm border border-blue-100 rounded-2xl p-5 text-center group hover:border-[#1e3a8a]/30 transition-all duration-300"
                   whileHover={{ y: -4, scale: 1.02 }}
                 >
                   <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">{a.emoji}</div>
