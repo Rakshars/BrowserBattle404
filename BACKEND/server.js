@@ -9,7 +9,7 @@ const startServer = async () => {
         await connectDB();
 
         app.listen(PORT, () => {
-            console.log(`Server up on port ${PORT}`);
+            console.log(`Server running on port ${PORT} - Connected to MongoDB`);
         });
     } catch (error) {
         console.error("Failed to start server:", error.message);

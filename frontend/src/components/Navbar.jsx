@@ -130,14 +130,7 @@ export default function Navbar() {
                 </div>
               ))}
 
-              <Link
-                to="/admissions"
-                className="ml-3 bg-[#1e3a8a] text-white font-semibold text-sm px-5 py-2.5 rounded-full
-                           hover:bg-[#3b82f6] transition-all duration-300 hover:scale-105 hover:shadow-lg
-                           hover:shadow-[#1e3a8a]/30"
-              >
-                Apply Now
-              </Link>
+
             </div>
 
             {/* Mobile toggle */}
@@ -182,15 +175,7 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-                <Link
-                  to="/admissions"
-                  className="mt-4 block text-center bg-[#1e3a8a] text-white font-bold py-4 rounded-full"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Apply Now
-                </Link>
-              </motion.div>
+
             </div>
           </motion.div>
         )}
