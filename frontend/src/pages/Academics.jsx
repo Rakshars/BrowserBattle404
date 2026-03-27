@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookOpen, Clock, Award, ChevronDown, ArrowRight, Download, Calendar } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import { 
+  BookOpen, Clock, Award, ChevronDown, 
+  ArrowRight, Download, Calendar, 
+  Monitor, FileText 
+} from 'lucide-react';
 import PageHero from '../components/PageHero';
 import AnimatedSection from '../components/AnimatedSection';
 
@@ -160,6 +165,32 @@ const buildSimplePdfBlob = (title, lines) => {
 
 export default function Academics() {
   const [openProgram, setOpenProgram] = useState(0);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const hash = location.hash.replace('#', '');
+      
+      // Handle Programs (UG, PG, PhD)
+      const progIndex = programs.findIndex(p => p.tag.toLowerCase() === hash);
+      if (progIndex !== -1) {
+        setOpenProgram(progIndex);
+      }
+
+      // Scroll with offset for navbar
+      const element = document.getElementById(hash);
+      if (element) {
+        const offset = 100;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [location.hash]);
 
   const handleDownloadSyllabusPdf = (programLevel, course) => {
     const lines = [
@@ -196,7 +227,7 @@ export default function Academics() {
           <div className="space-y-4">
             {programs.map((prog, i) => (
               <AnimatedSection key={prog.tag} delay={i * 0.1}>
-                <div className="bg-white shadow-sm border border-blue-100 rounded-2xl overflow-hidden">
+                <div id={prog.tag.toLowerCase()} className="scroll-mt-24 bg-white shadow-sm border border-blue-100 rounded-2xl overflow-hidden">
                   <button
                     className="w-full flex items-center justify-between p-6 text-left group"
                     onClick={() => setOpenProgram(openProgram === i ? null : i)}
@@ -298,6 +329,68 @@ export default function Academics() {
               <Download size={16} /> Download Full Calendar
             </button>
           </AnimatedSection>
+        </div>
+      </section>
+      {/* Online Courses */}
+      <section className="py-24 bg-slate-50 border-t border-slate-100" id="online">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <AnimatedSection>
+            <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Monitor className="text-blue-800" size={32} />
+            </div>
+            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">E-Learning</span>
+            <h2 className="font-serif text-4xl font-light text-slate-900 mb-6">Online Courses</h2>
+            <p className="text-slate-500 max-w-2xl mx-auto mb-8">
+              We are currently integrating modern e-learning platforms. Specialized online certifications, NPTEL mappings, and VTU-approved digital modules are coming soon.
+            </p>
+            <button className="px-8 py-3 bg-white border border-blue-200 rounded-full text-blue-800 font-semibold hover:bg-blue-50 transition-all">
+              Join Waitlist
+            </button>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Examination Cell */}
+      <section className="py-24 bg-white" id="exam">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="bg-[#1e3a8a] rounded-[3rem] p-12 text-white relative overflow-hidden">
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+              <div className="md:w-1/2">
+                <div className="flex items-center gap-3 mb-6">
+                  <FileText className="text-blue-300" size={24} />
+                  <span className="font-mono text-sm tracking-[0.3em] uppercase text-blue-200">Administration</span>
+                </div>
+                <h2 className="font-serif text-4xl mb-6">Examination Cell</h2>
+                <p className="text-blue-100 mb-8 leading-relaxed">
+                  Access semester results, download hall tickets, and view official notification circulars. The digital portal is synchronized with VTU standards for real-time updates.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <button className="bg-white text-blue-900 px-6 py-3 rounded-full font-bold text-sm tracking-wide hover:shadow-xl transition-all">
+                    Student Portal
+                  </button>
+                  <button className="bg-blue-800/50 border border-blue-600 px-6 py-3 rounded-full font-bold text-sm tracking-wide hover:bg-blue-700 transition-all">
+                    Notifications
+                  </button>
+                </div>
+              </div>
+              <div className="md:w-1/2 grid grid-cols-2 gap-4">
+                {[
+                  { label: 'GPA Calculator', desc: 'Instant results' },
+                  { label: 'Fast Track App', desc: 'Summer exams' },
+                  { label: 'Grievance Form', desc: 'Paper re-eval' },
+                  { label: 'Fee Payment', desc: 'Exam registration' }
+                ].map((stat, i) => (
+                  <div key={i} className="bg-blue-600/20 backdrop-blur-sm border border-blue-500/30 p-4 rounded-2xl">
+                    <div className="text-sm font-bold mb-1">{stat.label}</div>
+                    <div className="text-[10px] text-blue-200 uppercase tracking-widest">{stat.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Background design */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+          </div>
         </div>
       </section>
     </motion.div>
