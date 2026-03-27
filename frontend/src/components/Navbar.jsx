@@ -77,8 +77,8 @@ export default function Navbar() {
             <Link to="/" className="flex items-center gap-3 group">
               <img src="/bms-logo.png" alt="BMSCE Logo" className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300 bg-white rounded-full p-1" />
               <div className="hidden sm:block">
-                <div className="text-slate-900 font-serif text-lg font-semibold leading-none">BMSCE</div>
-                <div className="text-blue-800 text-[10px] tracking-[0.2em] font-mono">ENGINEERING</div>
+                <div className={`font-serif text-lg font-semibold leading-none ${scrolled ? 'text-slate-900' : 'text-white drop-shadow-md'}`}>BMSCE</div>
+                <div className={`text-[10px] tracking-[0.2em] font-mono ${scrolled ? 'text-blue-800' : 'text-blue-100 drop-shadow-md'}`}>ENGINEERING</div>
               </div>
             </Link>
 
@@ -95,8 +95,8 @@ export default function Navbar() {
                     to={item.href}
                     className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
                       ${isActive(item.href)
-                        ? 'text-blue-800'
-                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/5'
+                        ? (scrolled ? 'text-blue-800' : 'text-white drop-shadow-md')
+                        : (scrolled ? 'text-slate-600 hover:text-slate-900 hover:bg-black/5' : 'text-slate-200 hover:text-white hover:bg-white/10 drop-shadow-sm')
                       }`}
                   >
                     {item.label}
@@ -142,7 +142,7 @@ export default function Navbar() {
 
             {/* Mobile toggle */}
             <button
-              className="lg:hidden text-slate-900 p-2 rounded-lg hover:bg-white/10 transition"
+              className={`lg:hidden p-2 rounded-lg transition ${scrolled ? 'text-slate-900 hover:bg-black/5' : 'text-white hover:bg-white/10'}`}
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
