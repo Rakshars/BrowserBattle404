@@ -167,7 +167,7 @@ export default function Home() {
             <Link to="/about" className="btn-primary text-base">
               Explore BMSCE <ArrowRight size={18} />
             </Link>
-            <Link to="/admissions" className="btn-outline text-base">
+            <Link to="/admissions" className="btn-outline border-white/40 text-white hover:bg-white/10 text-base">
               Apply Now <ArrowRight size={18} />
             </Link>
           </motion.div>

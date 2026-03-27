@@ -31,20 +31,20 @@ export default function PageHero({ title, subtitle, breadcrumb, accent }) {
         {/* Breadcrumb */}
         {breadcrumb && (
           <motion.div
-            className="flex items-center gap-2 text-sm text-slate-600 mb-6"
+            className="flex items-center gap-2 text-sm text-blue-100 mb-6"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <Link to="/" className="hover:text-blue-800 transition-colors">Home</Link>
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight size={14} />
-            <span className="text-blue-800">{breadcrumb}</span>
+            <span className="text-blue-200 font-medium">{breadcrumb}</span>
           </motion.div>
         )}
 
         {accent && (
           <motion.span
-            className="inline-block text-blue-800 font-mono text-sm tracking-widest uppercase mb-4"
+            className="inline-block text-blue-300 font-mono text-sm tracking-widest uppercase mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -54,7 +54,7 @@ export default function PageHero({ title, subtitle, breadcrumb, accent }) {
         )}
 
         <motion.h1
-          className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-slate-900 leading-tight mb-4"
+          className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7 }}
@@ -64,7 +64,7 @@ export default function PageHero({ title, subtitle, breadcrumb, accent }) {
 
         {subtitle && (
           <motion.p
-            className="text-lg text-slate-600 max-w-2xl"
+            className="text-lg text-blue-100 max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}

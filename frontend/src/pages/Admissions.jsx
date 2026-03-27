@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, CheckCircle, Clock, FileText, HelpCircle, Phone, Mail } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import AnimatedSection from '../components/AnimatedSection';
