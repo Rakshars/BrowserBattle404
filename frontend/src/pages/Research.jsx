@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FlaskConical, Globe, BookOpen, Award, ArrowRight, Cpu, Leaf, Heart } from 'lucide-react';
+import { FlaskConical, Globe, BookOpen, Award, ArrowRight, Cpu, Leaf, Heart, Lightbulb, User, Settings, ExternalLink } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import AnimatedSection from '../components/AnimatedSection';
 import AnimatedCounter from '../components/AnimatedCounter';
@@ -39,21 +39,108 @@ export default function Research() {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <PageHero
-        title="Research & Innovation"
-        subtitle="Pioneering discoveries that address humanity's most pressing challenges."
-        breadcrumb="Research"
-        accent="Advancing Knowledge"
+        title="Research & Development Centre"
+        subtitle="Identifying new research areas, developing projects, and fostering innovation among faculty and students."
+        breadcrumb="R&D"
+        accent="Driving Innovation"
       />
 
-      {/* Stats */}
-      <section className="py-20 bg-white shadow-sm border-blue-50 border-b border-blue-100">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Intro & Head of R&D */}
+      <section className="py-24 bg-gradient-to-br from-white to-blue-50/50 border-b border-blue-100 overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <AnimatedSection direction="left">
+              <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">About R&D</span>
+              <h2 className="font-serif text-4xl md:text-5xl font-light text-slate-900 mb-6 leading-tight">
+                Driving Innovation at the Institutional Level
+              </h2>
+              <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                The R&D Center involves identifying new research areas and developing projects leading to publications in National & International Journals. Established to promote Research & Innovation, the center explores advanced technologies through cooperative, multidisciplinary engineering.
+              </p>
+              <div className="flex flex-col gap-4 border-l-4 border-[#1e3a8a] pl-6 py-2">
+                <p className="text-slate-700 italic">"The Centre acts as the liaison between the University and the research centers at BMSCE, guiding project proposals and patents."</p>
+                <div className="flex items-center gap-4 mt-2">
+                  <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-[#1e3a8a]">
+                    <User size={20} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900">Dr. Chandasree Das</h4>
+                    <p className="text-sm text-slate-500">Head, Research & Development</p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="right" delay={0.2} className="relative">
+              <div className="bg-white p-10 rounded-3xl shadow-xl shadow-blue-900/5 border border-blue-100 relative group overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400 to-[#1e3a8a] opacity-10 rounded-bl-full group-hover:scale-150 transition-transform duration-700" />
+                <div className="w-16 h-16 bg-[#1e3a8a] rounded-2xl flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-900/20">
+                  <ExternalLink size={28} />
+                </div>
+                <h3 className="text-3xl font-serif text-slate-900 mb-4">IRINS Portal</h3>
+                <p className="text-slate-600 mb-8 leading-relaxed">
+                  Indian Research Information Network System (IRINS) facilitates academic and R&D organizations to collect, curate and showcase scholarly communication activities and provide an opportunity to create a scholarly network.
+                </p>
+                <motion.a 
+                  href="https://bmsce.irins.org/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#1e3a8a] text-white px-8 py-3.5 rounded-full font-semibold hover:bg-blue-800 transition-all shadow-md group-hover:shadow-lg group-hover:-translate-y-1"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Visit BMSCE IRINS <ArrowRight size={18} />
+                </motion.a>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Propel Labs */}
+      <section className="py-24 bg-[#1e3a8a] text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <AnimatedSection className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-md mb-8 ring-1 ring-white/20">
+              <Lightbulb size={36} className="text-blue-200" />
+            </div>
+            <h2 className="font-serif text-5xl font-light mb-6">Propel Labs</h2>
+            <p className="text-blue-100/80 mt-4 max-w-3xl mx-auto text-lg leading-relaxed">
+              Centralized labs and design centers established for nurturing research from the first year of engineering. Student groups work on multidisciplinary project concepts to design prototypes, guided by expert technical staff and faculty mentors.
+            </p>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { title: 'Multidisciplinary Innovation', desc: 'Labs are broad-based and not confined to a single area. Students from all disciplines collaborate without terms or conditions.', icon: Globe },
+              { title: 'Concept to Prototype', desc: 'Creative thinking skills and expert mentoring result in systematic processes and concrete, working products.', icon: Settings },
+              { title: 'Global Competitions', desc: 'These research labs help students build impressive prototypes, enabling them to represent BMSCE in competitions globally.', icon: Award },
+            ].map((feature, i) => (
+              <AnimatedSection key={i} delay={i * 0.15} direction="up">
+                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 h-full hover:bg-white/10 transition-colors">
+                  <feature.icon className="text-blue-300 mb-6" size={32} />
+                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-blue-100/70 leading-relaxed text-sm">
+                    {feature.desc}
+                  </p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats - Shifted up to overlap Propel Labs slightly */}
+      <section className="py-12 bg-white shadow-xl border-blue-50 border border-blue-100 -mt-12 relative z-20 mx-6 rounded-3xl lg:mx-auto max-w-6xl">
+        <div className="px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { end: 52, label: 'Active Research Projects', sublabel: 'Across departments' },
-              { end: 16.5, suffix: ' Cr', prefix: '₹', label: 'Total Research Funding', sublabel: '2023–24' },
-              { end: 380, suffix: '+', label: 'Publications (5 Years)', sublabel: 'SCI/Scopus indexed' },
-              { end: 28, label: 'Patents Granted/Filed', sublabel: 'National & International' },
+              { end: 52, label: 'Active Projects', sublabel: 'Funded Research' },
+              { end: 16.5, suffix: ' Cr', prefix: '₹', label: 'Funding', sublabel: 'Rs. Crores' },
+              { end: 380, suffix: '+', label: 'Publications', sublabel: 'National & Intl.' },
+              { end: 28, label: 'Patents', sublabel: 'Granted/Filed' },
             ].map((s, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
                 <AnimatedCounter {...s} />
