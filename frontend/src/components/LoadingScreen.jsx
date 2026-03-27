@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 export default function LoadingScreen() {
   return (
     <motion.div
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#020810]"
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#001122]"
       exit={{ opacity: 0, scale: 1.05 }}
       transition={{ duration: 0.6, ease: 'easeInOut' }}
     >
@@ -13,7 +13,7 @@ export default function LoadingScreen() {
         {[1, 2, 3].map((i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full border border-[#C9A84C]/30"
+            className="absolute rounded-full border border-[#D32F2F]/30"
             style={{
               width: `${80 + i * 40}px`,
               height: `${80 + i * 40}px`,
@@ -25,11 +25,11 @@ export default function LoadingScreen() {
           />
         ))}
         <motion.div
-          className="w-20 h-20 rounded-full bg-gradient-to-br from-[#C9A84C] to-[#fcd34d] flex items-center justify-center"
+          className="w-20 h-20 rounded-full bg-gradient-to-br from-[#D32F2F] to-[#EF5350] flex items-center justify-center"
           animate={{ rotate: 360 }}
           transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
         >
-          <span className="text-[#0a1628] font-serif font-bold text-2xl">B</span>
+          <span className="text-[#003366] font-serif font-bold text-2xl">B</span>
         </motion.div>
       </div>
 
@@ -39,7 +39,7 @@ export default function LoadingScreen() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       >
-        <h1 className="font-serif text-3xl text-[#C9A84C] tracking-[0.3em] mb-2">BMSCE</h1>
+        <h1 className="font-serif text-3xl text-[#D32F2F] tracking-[0.3em] mb-2">BMSCE</h1>
         <p className="text-gray-400 text-sm tracking-widest uppercase font-mono">
           BMS College of Engineering
         </p>
@@ -52,7 +52,7 @@ export default function LoadingScreen() {
         transition={{ delay: 0.5 }}
       >
         <motion.div
-          className="h-full bg-gradient-to-r from-[#C9A84C] to-[#fcd34d]"
+          className="h-full bg-gradient-to-r from-[#D32F2F] to-[#EF5350]"
           initial={{ width: '0%' }}
           animate={{ width: '100%' }}
           transition={{ duration: 2, ease: 'easeInOut' }}

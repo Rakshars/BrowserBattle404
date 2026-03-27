@@ -85,7 +85,7 @@ const typeColors = {
   academic: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
   exam: 'bg-red-500/20 text-red-400 border-red-500/30',
   break: 'bg-green-500/20 text-green-400 border-green-500/30',
-  event: 'bg-[#C9A84C]/20 text-[#C9A84C] border-[#C9A84C]/30',
+  event: 'bg-[#D32F2F]/20 text-[#D32F2F] border-[#D32F2F]/30',
 };
 
 export default function Academics() {
@@ -101,17 +101,17 @@ export default function Academics() {
       />
 
       {/* Programs */}
-      <section className="py-24 bg-[#040c18]" id="ug">
+      <section className="py-24 bg-[#001A33]" id="ug">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Programs</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Programs</span>
             <h2 className="font-serif text-5xl font-light text-white">Academic Programs</h2>
           </AnimatedSection>
 
           <div className="space-y-4">
             {programs.map((prog, i) => (
               <AnimatedSection key={prog.tag} delay={i * 0.1}>
-                <div className="bg-[#0a1628] border border-white/5 rounded-2xl overflow-hidden">
+                <div className="bg-[#003366] border border-white/5 rounded-2xl overflow-hidden">
                   <button
                     className="w-full flex items-center justify-between p-6 text-left group"
                     onClick={() => setOpenProgram(openProgram === i ? null : i)}
@@ -147,7 +147,7 @@ export default function Academics() {
                           <div className="grid sm:grid-cols-2 gap-2">
                             {prog.courses.map(c => (
                               <div key={c} className="flex items-center gap-2 text-gray-300 text-sm bg-white/3 rounded-xl px-4 py-2.5 border border-white/5">
-                                <BookOpen size={13} className="text-[#C9A84C] shrink-0" />
+                                <BookOpen size={13} className="text-[#D32F2F] shrink-0" />
                                 {c}
                               </div>
                             ))}
@@ -172,21 +172,21 @@ export default function Academics() {
       </section>
 
       {/* Facilities */}
-      <section className="py-24 bg-[#020810]">
+      <section className="py-24 bg-[#001122]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Infrastructure</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Infrastructure</span>
             <h2 className="font-serif text-5xl font-light text-white">World-Class Facilities</h2>
           </AnimatedSection>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {facilities.map((f, i) => (
               <AnimatedSection key={f.name} delay={i * 0.08}>
                 <motion.div
-                  className="bg-[#0a1628] border border-white/5 rounded-2xl p-6 hover:border-[#C9A84C]/20 transition-all duration-300 group"
+                  className="bg-[#003366] border border-white/5 rounded-2xl p-6 hover:border-[#D32F2F]/20 transition-all duration-300 group"
                   whileHover={{ y: -5 }}
                 >
                   <div className="text-4xl mb-4">{f.icon}</div>
-                  <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-[#C9A84C] transition-colors">{f.name}</h3>
+                  <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-[#D32F2F] transition-colors">{f.name}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
                 </motion.div>
               </AnimatedSection>
@@ -196,17 +196,17 @@ export default function Academics() {
       </section>
 
       {/* Academic Calendar */}
-      <section className="py-24 bg-[#040c18]" id="calendar">
+      <section className="py-24 bg-[#001A33]" id="calendar">
         <div className="max-w-4xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Schedule</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Schedule</span>
             <h2 className="font-serif text-5xl font-light text-white">Academic Calendar 2024–25</h2>
           </AnimatedSection>
           <div className="space-y-3">
             {calendar.map((item, i) => (
               <AnimatedSection key={i} delay={i * 0.05}>
-                <div className="flex items-center gap-4 bg-[#0a1628] border border-white/5 rounded-xl px-5 py-4">
-                  <Calendar size={16} className="text-[#C9A84C] shrink-0" />
+                <div className="flex items-center gap-4 bg-[#003366] border border-white/5 rounded-xl px-5 py-4">
+                  <Calendar size={16} className="text-[#D32F2F] shrink-0" />
                   <div className="flex-1">
                     <div className="text-white font-medium text-sm">{item.event}</div>
                   </div>

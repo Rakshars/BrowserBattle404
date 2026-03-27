@@ -45,7 +45,7 @@ export default function Alumni() {
       />
 
       {/* Stats */}
-      <section className="py-20 bg-[#0a1628] border-b border-white/5">
+      <section className="py-20 bg-[#003366] border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -63,7 +63,7 @@ export default function Alumni() {
       </section>
 
       {/* Tabs */}
-      <section className="py-24 bg-[#040c18]">
+      <section className="py-24 bg-[#001A33]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="flex gap-4 mb-12 flex-wrap">
             {[
@@ -76,8 +76,8 @@ export default function Alumni() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeTab === tab.id
-                    ? 'bg-[#C9A84C] text-[#0a1628]'
-                    : 'border border-white/10 text-gray-400 hover:border-[#C9A84C]/40 hover:text-white'
+                    ? 'bg-[#D32F2F] text-[#003366]'
+                    : 'border border-white/10 text-gray-400 hover:border-[#D32F2F]/40 hover:text-white'
                 }`}
               >
                 {tab.label}
@@ -91,16 +91,16 @@ export default function Alumni() {
               {notableAlumni.map((a, i) => (
                 <AnimatedSection key={a.name} delay={i * 0.08}>
                   <motion.div
-                    className="bg-[#0a1628] border border-white/5 rounded-2xl p-6 group hover:border-[#C9A84C]/30 transition-all duration-300"
+                    className="bg-[#003366] border border-white/5 rounded-2xl p-6 group hover:border-[#D32F2F]/30 transition-all duration-300"
                     whileHover={{ y: -6 }}
                   >
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="w-14 h-14 rounded-full bg-[#C9A84C]/10 flex items-center justify-center text-3xl shrink-0">
+                      <div className="w-14 h-14 rounded-full bg-[#D32F2F]/10 flex items-center justify-center text-3xl shrink-0">
                         {a.img}
                       </div>
                       <div>
-                        <h3 className="text-white font-semibold group-hover:text-[#C9A84C] transition-colors">{a.name}</h3>
-                        <div className="text-[#C9A84C] text-xs font-mono mt-0.5">{a.batch}</div>
+                        <h3 className="text-white font-semibold group-hover:text-[#D32F2F] transition-colors">{a.name}</h3>
+                        <div className="text-[#D32F2F] text-xs font-mono mt-0.5">{a.batch}</div>
                         <div className="text-gray-400 text-sm mt-1">{a.role}</div>
                       </div>
                     </div>
@@ -120,17 +120,17 @@ export default function Alumni() {
               {testimonials.map((t, i) => (
                 <AnimatedSection key={t.name} delay={i * 0.1}>
                   <motion.div
-                    className="bg-[#0a1628] border border-white/5 rounded-2xl p-7 hover:border-[#C9A84C]/20 transition-all duration-300"
+                    className="bg-[#003366] border border-white/5 rounded-2xl p-7 hover:border-[#D32F2F]/20 transition-all duration-300"
                     whileHover={{ y: -5 }}
                   >
                     <div className="flex gap-1 mb-4">
                       {Array(5).fill(0).map((_, i) => (
-                        <Star key={i} size={14} className="text-[#C9A84C] fill-[#C9A84C]" />
+                        <Star key={i} size={14} className="text-[#D32F2F] fill-[#D32F2F]" />
                       ))}
                     </div>
                     <p className="text-gray-300 text-sm leading-relaxed italic mb-6">"{t.quote}"</p>
                     <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                      <div className="w-10 h-10 rounded-full bg-[#C9A84C]/15 flex items-center justify-center text-[#C9A84C] font-bold text-lg">
+                      <div className="w-10 h-10 rounded-full bg-[#D32F2F]/15 flex items-center justify-center text-[#D32F2F] font-bold text-lg">
                         {t.name[0]}
                       </div>
                       <div>
@@ -151,12 +151,12 @@ export default function Alumni() {
               {chapters.map((ch, i) => (
                 <AnimatedSection key={ch.city} delay={i * 0.07}>
                   <motion.div
-                    className={`bg-[#0a1628] border rounded-2xl p-6 text-center group hover:border-[#C9A84C]/40 transition-all duration-300 ${
-                      ch.active ? 'border-[#C9A84C]/20' : 'border-white/5'
+                    className={`bg-[#003366] border rounded-2xl p-6 text-center group hover:border-[#D32F2F]/40 transition-all duration-300 ${
+                      ch.active ? 'border-[#D32F2F]/20' : 'border-white/5'
                     }`}
                     whileHover={{ y: -5 }}
                   >
-                    <Globe size={24} className={`mx-auto mb-3 ${ch.active ? 'text-[#C9A84C]' : 'text-gray-600'}`} />
+                    <Globe size={24} className={`mx-auto mb-3 ${ch.active ? 'text-[#D32F2F]' : 'text-gray-600'}`} />
                     <h3 className="text-white font-semibold mb-1">{ch.city}</h3>
                     <div className="text-gray-400 text-sm mb-2">{ch.members.toLocaleString()} members</div>
                     <span className={`text-xs px-2 py-0.5 rounded-full font-mono border ${
@@ -173,7 +173,7 @@ export default function Alumni() {
       </section>
 
       {/* Alumni Association CTA */}
-      <section className="py-24 bg-[#020810]">
+      <section className="py-24 bg-[#001122]">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <AnimatedSection>
             <h2 className="font-serif text-5xl font-light text-white mb-6">Join the <span className="gradient-text italic">BMSCE Alumni</span> Association</h2>
@@ -182,7 +182,7 @@ export default function Alumni() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="btn-primary">Register Now <ArrowRight size={16} /></button>
-              <button className="btn-outline border-[#C9A84C]/30 text-[#C9A84C]">
+              <button className="btn-outline border-[#D32F2F]/30 text-[#D32F2F]">
                 <Linkedin size={16} /> Join LinkedIn Group
               </button>
             </div>

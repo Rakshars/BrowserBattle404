@@ -48,17 +48,17 @@ export default function Admissions() {
       />
 
       {/* Apply CTA Banner */}
-      <section className="py-12 bg-[#C9A84C]">
+      <section className="py-12 bg-[#D32F2F]">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="text-[#0a1628] font-serif text-2xl font-semibold">Admissions Open: 2024–25</h3>
-            <p className="text-[#0a1628]/70 text-sm mt-1">Applications for UG, PG & PhD programs are now being accepted.</p>
+            <h3 className="text-[#003366] font-serif text-2xl font-semibold">Admissions Open: 2024–25</h3>
+            <p className="text-[#003366]/70 text-sm mt-1">Applications for UG, PG & PhD programs are now being accepted.</p>
           </div>
           <div className="flex gap-3">
-            <button className="bg-[#0a1628] text-white px-7 py-3 rounded-full font-semibold hover:bg-[#0d1f3c] transition-colors">
+            <button className="bg-[#003366] text-white px-7 py-3 rounded-full font-semibold hover:bg-[#004080] transition-colors">
               Apply Now
             </button>
-            <button className="border-2 border-[#0a1628] text-[#0a1628] px-7 py-3 rounded-full font-semibold hover:bg-[#0a1628]/10 transition-colors">
+            <button className="border-2 border-[#003366] text-[#003366] px-7 py-3 rounded-full font-semibold hover:bg-[#003366]/10 transition-colors">
               Download Prospectus
             </button>
           </div>
@@ -66,10 +66,10 @@ export default function Admissions() {
       </section>
 
       {/* Steps */}
-      <section className="py-24 bg-[#040c18]">
+      <section className="py-24 bg-[#001A33]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Process</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Process</span>
             <h2 className="font-serif text-5xl font-light text-white">How to Apply</h2>
           </AnimatedSection>
 
@@ -77,14 +77,14 @@ export default function Admissions() {
             {steps.map((step, i) => (
               <AnimatedSection key={step.num} delay={i * 0.1}>
                 <motion.div
-                  className="bg-[#0a1628] border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-[#C9A84C]/30 transition-all duration-300"
+                  className="bg-[#003366] border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-[#D32F2F]/30 transition-all duration-300"
                   whileHover={{ y: -5 }}
                 >
-                  <div className="absolute top-4 right-4 font-mono text-6xl font-bold text-white/3 select-none group-hover:text-[#C9A84C]/5 transition-colors">
+                  <div className="absolute top-4 right-4 font-mono text-6xl font-bold text-white/3 select-none group-hover:text-[#D32F2F]/5 transition-colors">
                     {step.num}
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-[#C9A84C]/10 border border-[#C9A84C]/30 flex items-center justify-center mb-4">
-                    <span className="text-[#C9A84C] font-mono text-sm font-bold">{step.num}</span>
+                  <div className="w-10 h-10 rounded-full bg-[#D32F2F]/10 border border-[#D32F2F]/30 flex items-center justify-center mb-4">
+                    <span className="text-[#D32F2F] font-mono text-sm font-bold">{step.num}</span>
                   </div>
                   <h3 className="text-white font-semibold text-lg mb-2">{step.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
@@ -96,16 +96,16 @@ export default function Admissions() {
       </section>
 
       {/* Eligibility */}
-      <section className="py-24 bg-[#020810]">
+      <section className="py-24 bg-[#001122]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16">
             <AnimatedSection direction="left">
-              <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Eligibility</span>
+              <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Eligibility</span>
               <h2 className="font-serif text-4xl font-light text-white mb-8">Entry Requirements</h2>
               <div className="space-y-4">
                 {requirements.map(r => (
-                  <div key={r.program} className="bg-[#0a1628] border border-white/5 rounded-xl p-5">
-                    <div className="text-[#C9A84C] font-semibold mb-2">{r.program}</div>
+                  <div key={r.program} className="bg-[#003366] border border-white/5 rounded-xl p-5">
+                    <div className="text-[#D32F2F] font-semibold mb-2">{r.program}</div>
                     <div className="text-gray-400 text-sm leading-relaxed flex items-start gap-2">
                       <CheckCircle size={14} className="text-green-400 mt-0.5 shrink-0" />
                       {r.criteria}
@@ -116,25 +116,25 @@ export default function Admissions() {
             </AnimatedSection>
 
             <AnimatedSection direction="right">
-              <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Fee Structure</span>
+              <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Fee Structure</span>
               <h2 className="font-serif text-4xl font-light text-white mb-8">Tuition Fees 2024–25</h2>
-              <div className="bg-[#0a1628] border border-white/5 rounded-2xl overflow-hidden">
+              <div className="bg-[#003366] border border-white/5 rounded-2xl overflow-hidden">
                 <div className="grid grid-cols-3 text-xs font-mono text-gray-500 uppercase tracking-wider px-5 py-3 border-b border-white/5">
                   <span>Category</span><span className="text-center">UG/Year</span><span className="text-center">PG/Year</span>
                 </div>
                 {fees.map((f, i) => (
                   <div key={f.category} className={`grid grid-cols-3 px-5 py-4 text-sm items-center ${i < fees.length - 1 ? 'border-b border-white/5' : ''}`}>
                     <span className="text-gray-300">{f.category}</span>
-                    <span className="text-center text-[#C9A84C] font-mono">{f.ug}</span>
+                    <span className="text-center text-[#D32F2F] font-mono">{f.ug}</span>
                     <span className="text-center text-gray-400 font-mono">{f.pg}</span>
                   </div>
                 ))}
               </div>
               <p className="text-gray-600 text-xs mt-4">* Fees subject to revision. Refer to official prospectus for latest structure.</p>
 
-              <div className="mt-8 bg-[#0a1628] border border-[#C9A84C]/20 rounded-2xl p-6">
+              <div className="mt-8 bg-[#003366] border border-[#D32F2F]/20 rounded-2xl p-6">
                 <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
-                  <FileText size={16} className="text-[#C9A84C]" /> Important Dates
+                  <FileText size={16} className="text-[#D32F2F]" /> Important Dates
                 </h4>
                 {[
                   ['KCET Registration', 'Jan 15 – Mar 10, 2025'],
@@ -145,7 +145,7 @@ export default function Admissions() {
                 ].map(([evt, date]) => (
                   <div key={evt} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
                     <span className="text-gray-400 text-sm">{evt}</span>
-                    <span className="text-[#C9A84C] text-sm font-mono">{date}</span>
+                    <span className="text-[#D32F2F] text-sm font-mono">{date}</span>
                   </div>
                 ))}
               </div>
@@ -155,21 +155,21 @@ export default function Admissions() {
       </section>
 
       {/* FAQs */}
-      <section className="py-24 bg-[#040c18]">
+      <section className="py-24 bg-[#001A33]">
         <div className="max-w-3xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Help</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Help</span>
             <h2 className="font-serif text-5xl font-light text-white">Frequently Asked Questions</h2>
           </AnimatedSection>
           <div className="space-y-3">
             {faqs.map((faq, i) => (
               <AnimatedSection key={i} delay={i * 0.07}>
-                <div className="bg-[#0a1628] border border-white/5 rounded-2xl overflow-hidden">
+                <div className="bg-[#003366] border border-white/5 rounded-2xl overflow-hidden">
                   <button
                     className="w-full flex items-center gap-4 px-6 py-5 text-left"
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   >
-                    <HelpCircle size={18} className="text-[#C9A84C] shrink-0" />
+                    <HelpCircle size={18} className="text-[#D32F2F] shrink-0" />
                     <span className="text-white font-medium flex-1">{faq.q}</span>
                     <motion.span animate={{ rotate: openFaq === i ? 45 : 0 }} className="text-gray-500 text-xl shrink-0">+</motion.span>
                   </button>
@@ -199,7 +199,7 @@ export default function Admissions() {
               <a href="tel:+918026622130" className="flex items-center gap-2 btn-primary">
                 <Phone size={16} /> Call Admissions
               </a>
-              <a href="mailto:admissions@bmsce.ac.in" className="flex items-center gap-2 btn-outline border-[#C9A84C]/30 text-[#C9A84C]">
+              <a href="mailto:admissions@bmsce.ac.in" className="flex items-center gap-2 btn-outline border-[#D32F2F]/30 text-[#D32F2F]">
                 <Mail size={16} /> Email Us
               </a>
             </div>

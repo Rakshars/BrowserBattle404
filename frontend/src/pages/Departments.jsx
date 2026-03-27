@@ -100,13 +100,13 @@ export default function Departments() {
         accent="Academic Units"
       />
 
-      <section className="py-16 bg-[#040c18]">
+      <section className="py-16 bg-[#001A33]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
             {departments.map((dept, i) => (
               <AnimatedSection key={dept.id} delay={i * 0.07}>
                 <motion.div
-                  className={`bg-[#0a1628] border ${selected === dept.id ? dept.border : 'border-white/5'} 
+                  className={`bg-[#003366] border ${selected === dept.id ? dept.border : 'border-white/5'} 
                               rounded-2xl overflow-hidden cursor-pointer transition-all duration-300`}
                   whileHover={{ scale: 1.02, borderColor: 'rgba(201,168,76,0.3)' }}
                   onClick={() => setSelected(selected === dept.id ? null : dept.id)}
@@ -118,7 +118,7 @@ export default function Departments() {
                       <div className="flex items-center gap-3">
                         <span className="text-3xl">{dept.emoji}</span>
                         <div>
-                          <div className="text-[#C9A84C] font-mono text-xs">{dept.code}</div>
+                          <div className="text-[#D32F2F] font-mono text-xs">{dept.code}</div>
                           <h3 className="text-white font-semibold text-sm leading-snug">{dept.name}</h3>
                         </div>
                       </div>
@@ -149,17 +149,17 @@ export default function Departments() {
                         >
                           <div className="mt-4 pt-4 border-t border-white/5 space-y-4">
                             <div>
-                              <div className="text-[#C9A84C] text-xs font-mono mb-2">PROGRAMS OFFERED</div>
+                              <div className="text-[#D32F2F] text-xs font-mono mb-2">PROGRAMS OFFERED</div>
                               {dept.programs.map(p => (
                                 <div key={p} className="text-gray-400 text-sm flex items-center gap-2 mb-1">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#D32F2F]" />
                                   {p}
                                 </div>
                               ))}
                             </div>
 
                             <div>
-                              <div className="text-[#C9A84C] text-xs font-mono mb-2">SPECIALIZATIONS</div>
+                              <div className="text-[#D32F2F] text-xs font-mono mb-2">SPECIALIZATIONS</div>
                               <div className="flex flex-wrap gap-2">
                                 {dept.specializations.map(s => (
                                   <span key={s} className="bg-white/5 text-gray-400 text-xs px-2 py-1 rounded-full border border-white/10">
@@ -170,11 +170,11 @@ export default function Departments() {
                             </div>
 
                             <div>
-                              <div className="text-[#C9A84C] text-xs font-mono mb-2">FACILITIES</div>
+                              <div className="text-[#D32F2F] text-xs font-mono mb-2">FACILITIES</div>
                               <div className="grid grid-cols-2 gap-1">
                                 {dept.facilities.map(f => (
                                   <div key={f} className="text-gray-500 text-xs flex items-center gap-1">
-                                    <span className="text-[#C9A84C]">→</span> {f}
+                                    <span className="text-[#D32F2F]">→</span> {f}
                                   </div>
                                 ))}
                               </div>

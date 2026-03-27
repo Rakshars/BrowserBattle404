@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    --navy-deep: #0a1628;
-    --navy-mid: #0d1f3c;
-    --gold: #C9A84C;
-    --gold-light: #e2c06a;
+    --bmsblue-deep: #003366;
+    --bmsblue-mid: #004080;
+    --bmsred: #D32F2F;
+    --bmsred-light: #EF5350;
     --cream: #f8f4ed;
     --scroll-progress: 0%;
   }
@@ -22,7 +22,7 @@
   }
 
   .dark body {
-    @apply bg-[#040c18] text-gray-100;
+    @apply bg-[#001A33] text-gray-100;
   }
 
   * {
@@ -30,8 +30,8 @@
   }
 
   ::selection {
-    background-color: #C9A84C;
-    color: #0a1628;
+    background-color: #D32F2F;
+    color: #003366;
   }
 
   ::-webkit-scrollbar {
@@ -39,20 +39,20 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #0a1628;
+    background: #003366;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #C9A84C;
+    background: #D32F2F;
     border-radius: 3px;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gold-500 text-[#0a1628] font-semibold px-8 py-3 rounded-full 
-           hover:bg-gold-400 transition-all duration-300 hover:scale-105 hover:shadow-lg
-           hover:shadow-gold-500/30 inline-flex items-center gap-2;
+    @apply bg-bmsred-500 text-[#003366] font-semibold px-8 py-3 rounded-full 
+           hover:bg-bmsred-400 transition-all duration-300 hover:scale-105 hover:shadow-lg
+           hover:shadow-bmsred-500/30 inline-flex items-center gap-2;
   }
 
   .btn-outline {
@@ -70,17 +70,17 @@
   }
 
   .dark-glass {
-    @apply bg-[#0a1628]/80 backdrop-blur-md border border-white/10 rounded-2xl;
+    @apply bg-[#003366]/80 backdrop-blur-md border border-white/10 rounded-2xl;
   }
 
   .nav-link {
     @apply text-sm font-medium tracking-wide transition-all duration-200
-           hover:text-gold-500 relative;
+           hover:text-bmsred-500 relative;
   }
 
   .nav-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-0 h-px bg-gold-500 transition-all duration-300;
+    @apply absolute bottom-0 left-0 w-0 h-px bg-bmsred-500 transition-all duration-300;
   }
 
   .nav-link:hover::after,
@@ -103,35 +103,35 @@
 }
 
 @layer utilities {
-  .text-gold {
-    color: #C9A84C;
+  .text-bmsred {
+    color: #D32F2F;
   }
 
-  .bg-gold {
-    background-color: #C9A84C;
+  .bg-bmsred {
+    background-color: #D32F2F;
   }
 
-  .border-gold {
-    border-color: #C9A84C;
+  .border-bmsred {
+    border-color: #D32F2F;
   }
 
-  .text-navy {
-    color: #0a1628;
+  .text-bmsblue {
+    color: #003366;
   }
 
-  .bg-navy {
-    background-color: #0a1628;
+  .bg-bmsblue {
+    background-color: #003366;
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #C9A84C, #fcd34d);
+    background: linear-gradient(135deg, #D32F2F, #EF5350);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .gradient-navy {
-    background: linear-gradient(135deg, #0a1628, #0d1f3c, #162840);
+  .gradient-bmsblue {
+    background: linear-gradient(135deg, #003366, #004080, #004C99);
   }
 
   .animate-delay-100 { animation-delay: 100ms; }
@@ -145,7 +145,7 @@
 .loading-screen {
   position: fixed;
   inset: 0;
-  background: #0a1628;
+  background: #003366;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -157,7 +157,7 @@
 .loading-logo {
   font-family: 'Cormorant Garamond', serif;
   font-size: 2rem;
-  color: #C9A84C;
+  color: #D32F2F;
   letter-spacing: 0.2em;
   animation: pulse 1.5s ease-in-out infinite;
 }
@@ -172,7 +172,7 @@
 
 .loading-bar-fill {
   height: 100%;
-  background: #C9A84C;
+  background: #D32F2F;
   animation: loadingBar 2s ease-in-out forwards;
 }
 
@@ -187,7 +187,7 @@
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #C9A84C, #fcd34d);
+  background: linear-gradient(90deg, #D32F2F, #EF5350);
   z-index: 1000;
   transition: width 0.1s linear;
 }
@@ -208,7 +208,7 @@
   background: 
     radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.15) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 20%, rgba(13, 31, 60, 0.8) 0%, transparent 50%),
-    linear-gradient(135deg, #020810 0%, #0a1628 40%, #0d1f3c 100%);
+    linear-gradient(135deg, #001122 0%, #003366 40%, #004080 100%);
 }
 
 /* Particle dots */
@@ -249,7 +249,7 @@
 
 /* Dark mode transitions */
 .dark .bg-white {
-  background-color: #040c18;
+  background-color: #001A33;
 }
 
 /* Glassmorphism */
@@ -293,7 +293,7 @@
 
 /* Map placeholder */
 .map-placeholder {
-  background: linear-gradient(135deg, #0d1f3c, #162840);
+  background: linear-gradient(135deg, #004080, #004C99);
   position: relative;
   overflow: hidden;
 }

@@ -7,7 +7,7 @@ export default function PageHero({ title, subtitle, breadcrumb, accent }) {
   return (
     <section className="relative min-h-[52vh] flex items-end pb-16 pt-28 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#020810] via-[#0a1628] to-[#0d1f3c]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#001122] via-[#003366] to-[#004080]" />
 
       {/* Decorative grid */}
       <div className="absolute inset-0 opacity-10"
@@ -22,10 +22,10 @@ export default function PageHero({ title, subtitle, breadcrumb, accent }) {
 
       {/* Radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                      w-[600px] h-[400px] bg-[#C9A84C]/10 rounded-full blur-3xl" />
+                      w-[600px] h-[400px] bg-[#D32F2F]/10 rounded-full blur-3xl" />
 
       {/* Accent line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D32F2F]/50 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         {/* Breadcrumb */}
@@ -36,15 +36,15 @@ export default function PageHero({ title, subtitle, breadcrumb, accent }) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <Link to="/" className="hover:text-[#C9A84C] transition-colors">Home</Link>
+            <Link to="/" className="hover:text-[#D32F2F] transition-colors">Home</Link>
             <ChevronRight size={14} />
-            <span className="text-[#C9A84C]">{breadcrumb}</span>
+            <span className="text-[#D32F2F]">{breadcrumb}</span>
           </motion.div>
         )}
 
         {accent && (
           <motion.span
-            className="inline-block text-[#C9A84C] font-mono text-sm tracking-widest uppercase mb-4"
+            className="inline-block text-[#D32F2F] font-mono text-sm tracking-widest uppercase mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}

@@ -73,7 +73,7 @@ export default function Placements() {
       />
 
       {/* Key Stats */}
-      <section className="py-20 bg-[#0a1628] border-b border-white/5">
+      <section className="py-20 bg-[#003366] border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -91,10 +91,10 @@ export default function Placements() {
       </section>
 
       {/* Year-wise Trend */}
-      <section className="py-24 bg-[#040c18]">
+      <section className="py-24 bg-[#001A33]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-12">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Performance</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Performance</span>
             <h2 className="font-serif text-5xl font-light text-white">Placement Trends</h2>
           </AnimatedSection>
 
@@ -105,8 +105,8 @@ export default function Placements() {
                 onClick={() => setActiveYear(parseInt(y.year))}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeYear === parseInt(y.year)
-                    ? 'bg-[#C9A84C] text-[#0a1628]'
-                    : 'border border-white/10 text-gray-400 hover:border-[#C9A84C]/40'
+                    ? 'bg-[#D32F2F] text-[#003366]'
+                    : 'border border-white/10 text-gray-400 hover:border-[#D32F2F]/40'
                 }`}
               >
                 {y.year}
@@ -126,8 +126,8 @@ export default function Placements() {
                 { label: 'Average Package', value: `₹${y.avg} LPA`, icon: BarChart2 },
                 { label: 'Highest Package', value: `₹${y.highest} LPA`, icon: Award },
               ].map(({ label, value, icon: Icon }) => (
-                <div key={label} className="bg-[#0a1628] border border-white/5 rounded-2xl p-8 text-center">
-                  <Icon size={24} className="text-[#C9A84C] mx-auto mb-3" />
+                <div key={label} className="bg-[#003366] border border-white/5 rounded-2xl p-8 text-center">
+                  <Icon size={24} className="text-[#D32F2F] mx-auto mb-3" />
                   <div className="font-serif text-4xl text-white font-light mb-2">{value}</div>
                   <div className="text-gray-400 text-sm">{label}</div>
                 </div>
@@ -136,14 +136,14 @@ export default function Placements() {
           ))}
 
           {/* Bar chart visual */}
-          <div className="mt-16 bg-[#0a1628] border border-white/5 rounded-2xl p-8">
+          <div className="mt-16 bg-[#003366] border border-white/5 rounded-2xl p-8">
             <h3 className="text-white font-semibold mb-8">Placement Rate Over 5 Years</h3>
             <div className="flex items-end gap-4 h-40">
               {yearlyData.map(y => (
                 <div key={y.year} className="flex-1 flex flex-col items-center gap-2">
                   <div className="text-gray-400 text-sm">{y.placed}%</div>
                   <motion.div
-                    className="w-full bg-gradient-to-t from-[#C9A84C] to-[#fcd34d] rounded-t-lg"
+                    className="w-full bg-gradient-to-t from-[#D32F2F] to-[#EF5350] rounded-t-lg"
                     initial={{ height: 0 }}
                     animate={{ height: `${(y.placed / 100) * 120}px` }}
                     transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
@@ -157,23 +157,23 @@ export default function Placements() {
       </section>
 
       {/* Department-wise */}
-      <section className="py-24 bg-[#020810]">
+      <section className="py-24 bg-[#001122]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-12">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">By Department</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">By Department</span>
             <h2 className="font-serif text-5xl font-light text-white">Department Statistics</h2>
           </AnimatedSection>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {deptStats.map((d, i) => (
               <AnimatedSection key={d.dept} delay={i * 0.07}>
-                <motion.div className="bg-[#0a1628] border border-white/5 rounded-2xl p-6 group hover:border-[#C9A84C]/30 transition-all duration-300" whileHover={{ y: -4 }}>
-                  <div className="text-[#C9A84C] font-mono font-bold text-2xl mb-1">{d.dept}</div>
+                <motion.div className="bg-[#003366] border border-white/5 rounded-2xl p-6 group hover:border-[#D32F2F]/30 transition-all duration-300" whileHover={{ y: -4 }}>
+                  <div className="text-[#D32F2F] font-mono font-bold text-2xl mb-1">{d.dept}</div>
                   <div className="text-white text-3xl font-serif font-light mb-1">{d.placed}%</div>
                   <div className="text-gray-500 text-sm">placed</div>
                   <div className="mt-3 pt-3 border-t border-white/5 text-gray-300 text-sm font-medium">{d.avg} avg</div>
                   <div className="mt-2 h-1.5 bg-white/5 rounded-full overflow-hidden">
                     <motion.div
-                      className="h-full bg-gradient-to-r from-[#C9A84C] to-[#fcd34d] rounded-full"
+                      className="h-full bg-gradient-to-r from-[#D32F2F] to-[#EF5350] rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: `${d.placed}%` }}
                       transition={{ duration: 1.2, delay: i * 0.1 }}
@@ -187,22 +187,22 @@ export default function Placements() {
       </section>
 
       {/* Top Recruiters */}
-      <section className="py-24 bg-[#040c18]">
+      <section className="py-24 bg-[#001A33]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-12">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Partners</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Partners</span>
             <h2 className="font-serif text-5xl font-light text-white">Our Recruiters</h2>
           </AnimatedSection>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {topRecruiters.map((co, i) => (
               <AnimatedSection key={co.name} delay={i * 0.04}>
                 <motion.div
-                  className="bg-[#0a1628] border border-white/5 rounded-xl p-4 text-center group cursor-default hover:border-[#C9A84C]/30 transition-all duration-300"
+                  className="bg-[#003366] border border-white/5 rounded-xl p-4 text-center group cursor-default hover:border-[#D32F2F]/30 transition-all duration-300"
                   whileHover={{ scale: 1.05, y: -3 }}
                 >
-                  <div className="font-bold text-white text-sm group-hover:text-[#C9A84C] transition-colors">{co.name}</div>
+                  <div className="font-bold text-white text-sm group-hover:text-[#D32F2F] transition-colors">{co.name}</div>
                   <div className="text-gray-600 text-xs mt-1">{co.sector}</div>
-                  <div className="text-[#C9A84C] text-xs mt-1 font-mono">{co.package}</div>
+                  <div className="text-[#D32F2F] text-xs mt-1 font-mono">{co.package}</div>
                 </motion.div>
               </AnimatedSection>
             ))}
@@ -211,27 +211,27 @@ export default function Placements() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-[#020810]">
+      <section className="py-24 bg-[#001122]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-12">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Success Stories</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Success Stories</span>
             <h2 className="font-serif text-5xl font-light text-white">Our Placed Students</h2>
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
               <AnimatedSection key={t.name} delay={i * 0.12}>
-                <motion.div className="bg-[#0a1628] border border-white/5 rounded-2xl p-7 hover:border-[#C9A84C]/20 transition-all duration-300" whileHover={{ y: -5 }}>
-                  <div className="text-[#C9A84C] text-3xl mb-4 font-serif">"</div>
+                <motion.div className="bg-[#003366] border border-white/5 rounded-2xl p-7 hover:border-[#D32F2F]/20 transition-all duration-300" whileHover={{ y: -5 }}>
+                  <div className="text-[#D32F2F] text-3xl mb-4 font-serif">"</div>
                   <p className="text-gray-300 text-sm leading-relaxed mb-6 italic">{t.quote}</p>
                   <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                    <div className="w-10 h-10 rounded-full bg-[#C9A84C]/20 flex items-center justify-center text-[#C9A84C] font-bold">
+                    <div className="w-10 h-10 rounded-full bg-[#D32F2F]/20 flex items-center justify-center text-[#D32F2F] font-bold">
                       {t.name[0]}
                     </div>
                     <div>
                       <div className="text-white font-semibold text-sm">{t.name}</div>
                       <div className="text-gray-500 text-xs">{t.dept} · {t.company}</div>
                     </div>
-                    <div className="ml-auto text-[#C9A84C] text-sm font-mono font-bold">{t.package}</div>
+                    <div className="ml-auto text-[#D32F2F] text-sm font-mono font-bold">{t.package}</div>
                   </div>
                 </motion.div>
               </AnimatedSection>

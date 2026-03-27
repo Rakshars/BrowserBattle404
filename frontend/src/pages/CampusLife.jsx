@@ -48,10 +48,10 @@ export default function CampusLife() {
       />
 
       {/* Interactive Gallery */}
-      <section className="py-24 bg-[#040c18]">
+      <section className="py-24 bg-[#001A33]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Visual Tour</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Visual Tour</span>
             <h2 className="font-serif text-5xl font-light text-white">Our Campus</h2>
             <p className="text-gray-400 mt-4">Click any image to explore</p>
           </AnimatedSection>
@@ -61,7 +61,7 @@ export default function CampusLife() {
               <AnimatedSection key={item.label} delay={i * 0.07} className={item.span}>
                 <motion.div
                   className={`bg-gradient-to-br ${item.bg} rounded-2xl overflow-hidden cursor-pointer group 
-                              border border-white/5 hover:border-[#C9A84C]/30 transition-all duration-300
+                              border border-white/5 hover:border-[#D32F2F]/30 transition-all duration-300
                               ${item.span === 'col-span-2' ? 'h-52' : 'h-44'}`}
                   whileHover={{ scale: 1.02 }}
                   onClick={() => setSelectedImg(item)}
@@ -114,26 +114,26 @@ export default function CampusLife() {
       </AnimatePresence>
 
       {/* Clubs */}
-      <section className="py-24 bg-[#020810]">
+      <section className="py-24 bg-[#001122]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Student Life</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Student Life</span>
             <h2 className="font-serif text-5xl font-light text-white">Clubs & Societies</h2>
           </AnimatedSection>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {clubs.map((club, i) => (
               <AnimatedSection key={club.name} delay={i * 0.08}>
                 <motion.div
-                  className="bg-[#0a1628] border border-white/5 rounded-2xl p-6 group hover:border-[#C9A84C]/30 transition-all duration-300"
+                  className="bg-[#003366] border border-white/5 rounded-2xl p-6 group hover:border-[#D32F2F]/30 transition-all duration-300"
                   whileHover={{ y: -5 }}
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center">
-                      <club.icon size={18} className="text-[#C9A84C]" />
+                    <div className="w-10 h-10 rounded-xl bg-[#D32F2F]/10 flex items-center justify-center">
+                      <club.icon size={18} className="text-[#D32F2F]" />
                     </div>
                     <span className="text-[10px] font-mono text-gray-600 border border-white/10 px-2 py-0.5 rounded-full">{club.category}</span>
                   </div>
-                  <h3 className="text-white font-semibold mb-2 group-hover:text-[#C9A84C] transition-colors">{club.name}</h3>
+                  <h3 className="text-white font-semibold mb-2 group-hover:text-[#D32F2F] transition-colors">{club.name}</h3>
                   <p className="text-gray-500 text-xs leading-relaxed mb-3">{club.desc}</p>
                   <div className="text-gray-600 text-xs font-mono">{club.members} members</div>
                 </motion.div>
@@ -144,25 +144,25 @@ export default function CampusLife() {
       </section>
 
       {/* Events */}
-      <section className="py-24 bg-[#040c18]">
+      <section className="py-24 bg-[#001A33]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Calendar</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Calendar</span>
             <h2 className="font-serif text-5xl font-light text-white">Major Events</h2>
           </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((ev, i) => (
               <AnimatedSection key={ev.name} delay={i * 0.1}>
                 <motion.div
-                  className="bg-[#0a1628] border border-white/5 rounded-2xl p-7 group hover:border-[#C9A84C]/30 transition-all duration-300 relative overflow-hidden"
+                  className="bg-[#003366] border border-white/5 rounded-2xl p-7 group hover:border-[#D32F2F]/30 transition-all duration-300 relative overflow-hidden"
                   whileHover={{ y: -5 }}
                 >
                   <div className="absolute top-4 right-5 text-gray-700 font-mono text-xs">{ev.month}</div>
-                  <div className="text-[#C9A84C] text-xs font-mono mb-2 border border-[#C9A84C]/20 px-2 py-0.5 rounded-full inline-block">{ev.type}</div>
-                  <h3 className="text-white font-serif text-2xl font-light mb-3 group-hover:text-[#C9A84C] transition-colors">{ev.name}</h3>
+                  <div className="text-[#D32F2F] text-xs font-mono mb-2 border border-[#D32F2F]/20 px-2 py-0.5 rounded-full inline-block">{ev.type}</div>
+                  <h3 className="text-white font-serif text-2xl font-light mb-3 group-hover:text-[#D32F2F] transition-colors">{ev.name}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4">{ev.desc}</p>
                   <div className="text-gray-400 text-sm flex items-center gap-2">
-                    <Users size={13} className="text-[#C9A84C]" />
+                    <Users size={13} className="text-[#D32F2F]" />
                     {ev.participants} participants
                   </div>
                 </motion.div>
@@ -173,10 +173,10 @@ export default function CampusLife() {
       </section>
 
       {/* Hostel & Amenities */}
-      <section className="py-24 bg-[#020810]">
+      <section className="py-24 bg-[#001122]">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#C9A84C] font-mono text-sm tracking-widest uppercase block mb-4">Infrastructure</span>
+            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Infrastructure</span>
             <h2 className="font-serif text-5xl font-light text-white">Campus Amenities</h2>
           </AnimatedSection>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
@@ -192,11 +192,11 @@ export default function CampusLife() {
             ].map((a, i) => (
               <AnimatedSection key={a.name} delay={i * 0.06}>
                 <motion.div
-                  className="bg-[#0a1628] border border-white/5 rounded-2xl p-5 text-center group hover:border-[#C9A84C]/30 transition-all duration-300"
+                  className="bg-[#003366] border border-white/5 rounded-2xl p-5 text-center group hover:border-[#D32F2F]/30 transition-all duration-300"
                   whileHover={{ y: -4, scale: 1.02 }}
                 >
                   <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">{a.emoji}</div>
-                  <div className="text-white font-semibold text-sm group-hover:text-[#C9A84C] transition-colors">{a.name}</div>
+                  <div className="text-white font-semibold text-sm group-hover:text-[#D32F2F] transition-colors">{a.name}</div>
                   <div className="text-gray-500 text-xs mt-1">{a.detail}</div>
                 </motion.div>
               </AnimatedSection>

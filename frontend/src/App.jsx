@@ -44,7 +44,7 @@ export default function App() {
 
       {!loading && (
         <div className={darkMode ? 'dark' : ''}>
-          <div className="min-h-screen bg-white dark:bg-[#040c18] text-gray-900 dark:text-gray-100 transition-colors duration-500">
+          <div className="min-h-screen bg-white dark:bg-[#001A33] text-gray-900 dark:text-gray-100 transition-colors duration-500">
             <ScrollProgress />
             <Navbar darkMode={darkMode} />
             <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
