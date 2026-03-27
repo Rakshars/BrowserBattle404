@@ -1,9 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Globe, Users, Award, Briefcase, Handshake, ExternalLink, GraduationCap, Building2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Star, Linkedin, Globe, Users, Award, MapPin, Briefcase, Handshake, ExternalLink, GraduationCap, Building2 } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import AnimatedSection from '../components/AnimatedSection';
 import AnimatedCounter from '../components/AnimatedCounter';
+import { api } from '../api';
 
 const institutes = [
   { name: 'BMS College of Engineering', year: 1946 },
@@ -31,7 +32,102 @@ const galleryPhotos = [
   "https://almashines.s3.dualstack.ap-southeast-1.amazonaws.com/assets/images/gallary_photos/t1694321469_yPrBdaUsrQ.jpg",
   "https://almashines.s3.dualstack.ap-southeast-1.amazonaws.com/assets/images/gallary_photos/t1694321438_jQyqjqWpjR.jpg"
 ];
+
+const notableAlumni = [
+  { name: 'Dr. Sarah Chen', batch: '1998', role: 'VP of Engineering', achievement: 'Led the development of scalable cloud architectures at a top Fortune 500 company.', location: 'San Francisco, CA', img: '👩‍💻' },
+  { name: 'Rahul Sharma', batch: '2005', role: 'Founder & CEO', achievement: 'Built a unicorn startup revolutionizing logistics across South East Asia.', location: 'Singapore', img: '👨‍💼' }
+];
+
+const testimonials = [
+  { name: 'Priya Desai', batch: '2015', company: 'Tech Innovators', role: 'Product Manager', quote: 'The foundation I received at BMSCE was crucial in shaping my product sense and leadership skills.' },
+  { name: 'Arjun Reddy', batch: '2019', company: 'Global Systems', role: 'Software Engineer', quote: 'The alumni network directly helped me secure my first role. The mentorship programs are unparalleled.' }
+];
+
+const chapters = [
+  { city: 'Silicon Valley', members: 1250, active: true },
+  { city: 'London', members: 840, active: true },
+  { city: 'Singapore', members: 560, active: true },
+  { city: 'Dubai', members: 320, active: false }
+];
+
 export default function Alumni() {
+  const [activeTab, setActiveTab] = useState('notable');
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+  const [registeredAlumni, setRegisteredAlumni] = useState([]);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    studyStartYear: '',
+    studyEndYear: '',
+    graduationYear: '',
+    course: '',
+    currentStatus: '',
+  });
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadAlumni = async () => {
+      try {
+        const res = await api.get('/alumni');
+        if (isMounted && Array.isArray(res?.data)) {
+          setRegisteredAlumni(res.data);
+        }
+      } catch (error) {
+        // Keep page functional even if API fails.
+      }
+    };
+
+    loadAlumni();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setSubmitMessage('');
+    setIsSubmitting(true);
+
+    try {
+      const payload = {
+        ...formData,
+        graduationYear: Number(formData.graduationYear),
+        studyStartYear: formData.studyStartYear ? Number(formData.studyStartYear) : undefined,
+        studyEndYear: formData.studyEndYear ? Number(formData.studyEndYear) : undefined,
+      };
+
+      const res = await api.post('/alumni/register', payload);
+      if (res?.data) {
+        setRegisteredAlumni((prev) => [res.data, ...prev]);
+      }
+
+      setSubmitMessage('Registration submitted successfully. Welcome to BMSCE Alumni Network!');
+      setFormData({
+        name: '',
+        email: '',
+        studyStartYear: '',
+        studyEndYear: '',
+        graduationYear: '',
+        course: '',
+        currentStatus: '',
+      });
+      setActiveTab('registered');
+    } catch (error) {
+      setSubmitMessage(error.message || 'Failed to submit registration. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pb-12 bg-white">
       <PageHero
@@ -187,7 +283,7 @@ export default function Alumni() {
             </p>
           </AnimatedSection>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
             {institutes.map((inst, i) => (
               <AnimatedSection key={i} delay={i * 0.05} direction="up">
                 <div className="bg-white border border-slate-200 rounded-2xl p-8 h-full hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1 hover:border-blue-300/50 transition-all duration-300 group flex flex-col justify-between overflow-hidden relative">
@@ -207,6 +303,140 @@ export default function Alumni() {
               </AnimatedSection>
             ))}
           </div>
+
+          <AnimatedSection className="flex gap-4 mb-12 flex-wrap">
+            {[
+              { id: 'notable', label: 'Notable Alumni' },
+              { id: 'testimonials', label: 'Testimonials' },
+              { id: 'chapters', label: 'Global Chapters' },
+              { id: 'registered', label: 'Registered Alumni' },
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeTab === tab.id
+                    ? 'bg-[#1e3a8a] text-white'
+                    : 'border border-blue-100 text-slate-600 hover:border-[#1e3a8a]/40 hover:text-slate-900'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </AnimatedSection>
+
+          {/* Notable Alumni */}
+          {activeTab === 'notable' && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {notableAlumni.map((a, i) => (
+                <AnimatedSection key={a.name} delay={i * 0.08}>
+                  <motion.div
+                    className="bg-white shadow-sm border border-blue-100 rounded-2xl p-6 group hover:border-[#1e3a8a]/30 transition-all duration-300"
+                    whileHover={{ y: -6 }}
+                  >
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="w-14 h-14 rounded-full bg-[#1e3a8a]/10 flex items-center justify-center text-3xl shrink-0">
+                        {a.img}
+                      </div>
+                      <div>
+                        <h3 className="text-slate-900 font-semibold group-hover:text-blue-800 transition-colors">{a.name}</h3>
+                        <div className="text-blue-800 text-xs font-mono mt-0.5">{a.batch}</div>
+                        <div className="text-slate-600 text-sm mt-1">{a.role}</div>
+                      </div>
+                    </div>
+                    <p className="text-slate-500 text-sm leading-relaxed mb-3">{a.achievement}</p>
+                    <div className="flex items-center gap-1 text-gray-600 text-xs">
+                      <MapPin size={11} /> {a.location}
+                    </div>
+                  </motion.div>
+                </AnimatedSection>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Testimonials */}
+          {activeTab === 'testimonials' && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid md:grid-cols-2 gap-6">
+              {testimonials.map((t, i) => (
+                <AnimatedSection key={t.name} delay={i * 0.1}>
+                  <motion.div
+                    className="bg-white shadow-sm border border-blue-100 rounded-2xl p-7 hover:border-[#1e3a8a]/20 transition-all duration-300"
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="flex gap-1 mb-4">
+                      {Array(5).fill(0).map((_, i) => (
+                        <Star key={i} size={14} className="text-blue-800 fill-[#1e3a8a]" />
+                      ))}
+                    </div>
+                    <p className="text-slate-700 text-sm leading-relaxed italic mb-6">"{t.quote}"</p>
+                    <div className="flex items-center gap-3 pt-4 border-t border-blue-100">
+                      <div className="w-10 h-10 rounded-full bg-[#1e3a8a]/15 flex items-center justify-center text-blue-800 font-bold text-lg">
+                        {t.name[0]}
+                      </div>
+                      <div>
+                        <div className="text-slate-900 font-semibold text-sm">{t.name}</div>
+                        <div className="text-slate-500 text-xs">{t.batch} · {t.company}</div>
+                      </div>
+                      <div className="ml-auto text-slate-500 text-xs">{t.role}</div>
+                    </div>
+                  </motion.div>
+                </AnimatedSection>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Chapters */}
+          {activeTab === 'chapters' && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {chapters.map((ch, i) => (
+                <AnimatedSection key={ch.city} delay={i * 0.07}>
+                  <motion.div
+                    className={`bg-white shadow-sm border-blue-50 border rounded-2xl p-6 text-center group hover:border-[#1e3a8a]/40 transition-all duration-300 ${
+                      ch.active ? 'border-[#1e3a8a]/20' : 'border-blue-100'
+                    }`}
+                    whileHover={{ y: -5 }}
+                  >
+                    <Globe size={24} className={`mx-auto mb-3 ${ch.active ? 'text-blue-800' : 'text-gray-600'}`} />
+                    <h3 className="text-slate-900 font-semibold mb-1">{ch.city}</h3>
+                    <div className="text-slate-600 text-sm mb-2">{ch.members.toLocaleString()} members</div>
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-mono border ${
+                      ch.active ? 'bg-green-500/10 text-green-400 border-green-500/30' : 'bg-white/5 text-gray-600 border-blue-100'
+                    }`}>
+                      {ch.active ? 'Active' : 'Forming'}
+                    </span>
+                  </motion.div>
+                </AnimatedSection>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Registered Alumni */}
+          {activeTab === 'registered' && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {registeredAlumni.length === 0 && (
+                <div className="md:col-span-2 lg:col-span-3 text-center text-slate-500 border border-blue-100 rounded-2xl py-12">
+                  No registrations yet. Be the first to register.
+                </div>
+              )}
+              {registeredAlumni.map((a, i) => (
+                <AnimatedSection key={a._id || `${a.email}-${i}`} delay={i * 0.05}>
+                  <motion.div
+                    className="bg-white shadow-sm border border-blue-100 rounded-2xl p-6 hover:border-[#1e3a8a]/30 transition-all duration-300"
+                    whileHover={{ y: -5 }}
+                  >
+                    <h3 className="text-slate-900 font-semibold">{a.name}</h3>
+                    <p className="text-slate-500 text-sm mt-1">{a.email}</p>
+                    <div className="text-blue-800 text-xs font-mono mt-3">{a.course}</div>
+                    <div className="text-slate-600 text-sm mt-2">
+                      Studied: {a.studyStartYear || 'N/A'} - {a.studyEndYear || a.graduationYear}
+                    </div>
+                    <div className="text-slate-600 text-sm">Graduated: {a.graduationYear}</div>
+                    <p className="text-slate-700 text-sm mt-3 leading-relaxed">Now: {a.currentStatus}</p>
+                  </motion.div>
+                </AnimatedSection>
+              ))}
+            </motion.div>
+          )}
         </div>
       </section>
 
@@ -231,19 +461,137 @@ export default function Alumni() {
                 href="https://alumni.bmset.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-full font-semibold hover:bg-blue-50 transition-colors shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] text-lg group"
+                className="inline-flex items-center justify-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition-colors shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] text-base group"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Access Official Portal 
+                Access Portal 
                 <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-white group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.1)] transition-all">
                   <ExternalLink size={16} className="text-slate-900 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </motion.a>
+
+              <button className="inline-flex items-center justify-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-500 transition-colors shadow-lg shadow-blue-900/40 text-base group" onClick={() => { setSubmitMessage(''); setIsRegisterOpen(true); }}>
+                Register Now <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <button className="inline-flex items-center justify-center gap-3 border border-slate-700 bg-transparent text-white px-8 py-4 rounded-full font-semibold hover:bg-slate-800 hover:border-slate-600 transition-colors text-base group">
+                <Linkedin size={20} className="text-blue-400 group-hover:text-white transition-colors" /> LinkedIn Group
+              </button>
             </div>
           </AnimatedSection>
         </div>
       </section>
+
+      <AnimatePresence>
+        {isRegisterOpen && (
+          <motion.div
+            className="fixed inset-0 z-[220] bg-black/70 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsRegisterOpen(false)}
+          >
+            <motion.div
+              className="w-full max-w-2xl bg-white rounded-3xl p-6 sm:p-8 border border-blue-100 shadow-2xl relative my-auto"
+              initial={{ y: 24, scale: 0.95, opacity: 0 }}
+              animate={{ y: 0, scale: 1, opacity: 1 }}
+              exit={{ y: 24, scale: 0.95, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className="font-serif text-3xl text-slate-900 font-light">Alumni Registration</h3>
+              <p className="text-slate-600 mt-2 mb-6">Share your journey and stay connected with the BMSET ecosystem.</p>
+
+              <form onSubmit={handleRegister} className="grid sm:grid-cols-2 gap-4">
+                <input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Full Name"
+                  required
+                  className="sm:col-span-2 border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Email Address"
+                  required
+                  className="sm:col-span-2 border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <input
+                  type="number"
+                  name="studyStartYear"
+                  value={formData.studyStartYear}
+                  onChange={handleInputChange}
+                  placeholder="Study Start Year (e.g. 2016)"
+                  min="1900"
+                  max="2100"
+                  className="border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <input
+                  type="number"
+                  name="studyEndYear"
+                  value={formData.studyEndYear}
+                  onChange={handleInputChange}
+                  placeholder="Study End Year (e.g. 2020)"
+                  min="1900"
+                  max="2100"
+                  className="border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <input
+                  type="number"
+                  name="graduationYear"
+                  value={formData.graduationYear}
+                  onChange={handleInputChange}
+                  placeholder="Graduation Year"
+                  min="1900"
+                  max="2100"
+                  required
+                  className="border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <input
+                  name="course"
+                  value={formData.course}
+                  onChange={handleInputChange}
+                  placeholder="What did you study?"
+                  required
+                  className="border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20"
+                />
+                <textarea
+                  name="currentStatus"
+                  value={formData.currentStatus}
+                  onChange={handleInputChange}
+                  placeholder="What are you doing now (Job/Company)?"
+                  required
+                  rows={4}
+                  className="sm:col-span-2 border border-blue-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]/20 resize-none"
+                />
+
+                {submitMessage && (
+                  <div className="sm:col-span-2 text-sm text-slate-700 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3 font-medium">
+                    {submitMessage}
+                  </div>
+                )}
+
+                <div className="sm:col-span-2 flex flex-col sm:flex-row gap-3 justify-end mt-4">
+                  <button
+                    type="button"
+                    className="px-6 py-2.5 rounded-full border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors"
+                    onClick={() => setIsRegisterOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button type="submit" className="px-6 py-2.5 rounded-full bg-[#1e3a8a] text-white hover:bg-blue-800 transition-colors flex items-center gap-2 font-medium shadow-lg shadow-blue-900/20" disabled={isSubmitting}>
+                    {isSubmitting ? 'Submitting...' : 'Submit Registration'} <ArrowRight size={16} />
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

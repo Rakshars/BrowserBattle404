@@ -20,6 +20,12 @@ const gallerySchema = new mongoose.Schema(
         message: "Image URL must be a valid URL with protocol",
       },
     },
+    description: {
+      type: String,
+      trim: true,
+      maxlength: 280,
+      default: "",
+    },
     category: {
       type: String,
       enum: ["campus", "events", "labs"],
