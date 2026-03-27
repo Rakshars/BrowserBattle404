@@ -74,20 +74,19 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Map placeholder */}
-                <div className="map-placeholder rounded-2xl h-48 flex items-center justify-center border border-blue-100 relative overflow-hidden">
-                  <div className="relative z-10 text-center">
-                    <MapPin size={32} className="text-blue-800 mx-auto mb-2" />
-                    <p className="text-slate-600 text-sm">BMSCE, Basavanagudi</p>
-                    <a
-                      href="https://maps.google.com/?q=BMS+College+of+Engineering+Bangalore"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-800 text-xs mt-2 inline-block hover:underline"
-                    >
-                      Open in Google Maps →
-                    </a>
-                  </div>
+                {/* Google Maps Embed */}
+                <div className="rounded-2xl h-64 border border-blue-100 relative overflow-hidden shadow-sm group bg-slate-50">
+                  <iframe 
+                    src="https://maps.google.com/maps?q=BMS%20College%20of%20Engineering,%20Bull%20Temple%20Road,%20Basavanagudi,%20Bangalore&t=k&z=18&ie=UTF8&iwloc=&output=embed" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    allowFullScreen="" 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="BMSCE Location Map"
+                    className="absolute inset-0 w-full h-full grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                  ></iframe>
                 </div>
               </AnimatedSection>
 
