@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Play, Award, Users, BookOpen, TrendingUp, Building, Star, ChevronDown, Zap, Globe, Shield } from 'lucide-react';
+import { ArrowRight, Play, Award, Users, BookOpen, TrendingUp, Building, Star, ChevronDown, Zap, Globe, Shield, Calendar } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import AnimatedCounter from '../components/AnimatedCounter';
 import { useInView } from 'react-intersection-observer';
@@ -22,10 +22,34 @@ const departments = [
 ];
 
 const news = [
-  { tag: 'Research', title: 'BMSCE Researchers Develop AI-based Early Disease Detection System', date: 'Mar 2024' },
-  { tag: 'Achievement', title: 'College Ranked #42 in NIRF Engineering Rankings 2024', date: 'Feb 2024' },
-  { tag: 'Placements', title: '95% Placement Rate Achieved — Highest in College History', date: 'Jan 2024' },
-  { tag: 'Events', title: 'TechFest 2024 — Annual Technical Festival Draws 12,000+ Participants', date: 'Dec 2023' },
+  { 
+    tag: 'Research', 
+    title: 'BMSCE Researchers Develop AI-based Early Disease Detection System', 
+    date: 'Mar 24, 2024', 
+    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=800',
+    link: '#'
+  },
+  { 
+    tag: 'Ranking', 
+    title: 'BMSCE Ranked Among Top 50 Engineering Colleges in NIRF 2024', 
+    date: 'Feb 15, 2024', 
+    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800',
+    link: '#'
+  },
+  { 
+    tag: 'Placements', 
+    title: 'Record Breaking Placements: 95% Students Placed in Top Tier Tech Companies', 
+    date: 'Jan 28, 2024', 
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800',
+    link: '#'
+  },
+  { 
+    tag: 'Events', 
+    title: 'Phase Shift 2024: Annual Tech Symposium Draws Over 15,000 Participants', 
+    date: 'Dec 10, 2023', 
+    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=800',
+    link: '#'
+  },
 ];
 
 const features = [
@@ -129,7 +153,7 @@ export default function Home() {
             transition={{ delay: 0.4 }}
           >
             <Zap size={12} />
-            NAAC A+ GRADE · NIRF RANKED · NBA ACCREDITED
+            NAAC A++ GRADE · NIRF RANKED · NBA ACCREDITED
           </motion.div>
 
           <motion.h1
@@ -166,9 +190,6 @@ export default function Home() {
           >
             <Link to="/about" className="btn-primary text-base">
               Explore BMSCE <ArrowRight size={18} />
-            </Link>
-            <Link to="/admissions" className="btn-outline border-white/40 text-white hover:bg-white/10 text-base">
-              Apply Now <ArrowRight size={18} />
             </Link>
           </motion.div>
 
@@ -255,147 +276,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── DEPARTMENTS ─── */}
-      <section className="py-28 bg-white shadow-sm border-blue-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection className="text-center mb-16">
-            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Programs</span>
-            <h2 className="font-serif text-5xl font-light text-slate-900 mb-4">Our Departments</h2>
-            <p className="text-slate-600 max-w-xl mx-auto">
-              14 cutting-edge departments offering undergraduate, postgraduate, and doctoral programs
-            </p>
-          </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {departments.map((dept, i) => (
-              <AnimatedSection key={dept.code} delay={i * 0.08}>
-                <motion.div
-                  className="dept-card bg-white shadow-sm border-blue-50 border border-blue-100"
-                  whileHover={{ borderColor: 'rgba(201,168,76,0.3)' }}
-                >
-                  <Link to="/departments">
-                    <div className={`h-2 w-full bg-gradient-to-r ${dept.color}`} />
-                    <div className="p-6">
-                      <div className="flex items-start justify-between mb-4">
-                        <span className="text-3xl">{dept.icon}</span>
-                        <span className="text-blue-800 font-mono text-xs border border-[#1e3a8a]/30 
-                                        px-2 py-1 rounded-full">{dept.code}</span>
-                      </div>
-                      <h3 className="text-slate-900 font-semibold text-lg mb-2">{dept.name}</h3>
-                      <p className="text-slate-500 text-sm mb-4">{dept.students} students enrolled</p>
-                      <div className="flex items-center gap-2 text-blue-800 text-sm group-hover:gap-3 transition-all">
-                        Explore <ArrowRight size={14} />
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-
-          <AnimatedSection className="text-center mt-12">
-            <Link to="/departments" className="btn-outline border-[#1e3a8a]/40 text-blue-800">
-              View All Departments <ArrowRight size={16} />
-            </Link>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* ─── PLACEMENTS HIGHLIGHT ─── */}
-      <section className="py-28 bg-white shadow-sm border-blue-50 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `radial-gradient(circle at 50% 50%, #1e3a8a 1px, transparent 1px)`,
-            backgroundSize: '40px 40px'
-          }}
-        />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <AnimatedSection direction="left">
-              <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Placements</span>
-              <h2 className="font-serif text-5xl font-light text-slate-900 leading-tight mb-6">
-                Where Our <span className="gradient-text italic">Graduates</span> Go
-              </h2>
-              <p className="text-slate-600 text-lg leading-relaxed mb-8">
-                Our placement cell works tirelessly to connect students with India's and the world's
-                top employers. With a 95% placement rate in 2024, we're proud of where our alumni have landed.
-              </p>
-
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {[
-                  { val: '₹45 LPA', label: 'Highest Package' },
-                  { val: '₹8.2 LPA', label: 'Average Package' },
-                  { val: '300+', label: 'Recruiting Companies' },
-                  { val: '95%', label: 'Placed in 2024' },
-                ].map(item => (
-                  <div key={item.label} className="bg-white shadow-sm border-blue-50 rounded-xl p-4 border border-blue-100">
-                    <div className="text-2xl font-serif text-blue-800 font-semibold">{item.val}</div>
-                    <div className="text-slate-600 text-sm mt-1">{item.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <Link to="/placements" className="btn-primary">
-                View Placements <ArrowRight size={18} />
-              </Link>
-            </AnimatedSection>
-
-            <AnimatedSection direction="right">
-              <div className="grid grid-cols-3 gap-4">
-                {[
-                  'Google', 'Microsoft', 'Amazon', 'Meta', 'Apple', 'Netflix',
-                  'Infosys', 'TCS', 'Wipro', 'Accenture', 'Deloitte', 'KPMG',
-                  'Goldman Sachs', 'JP Morgan', 'Salesforce', 'Adobe', 'Intel', 'Samsung',
-                ].map(company => (
-                  <motion.div
-                    key={company}
-                    className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-xl p-3 text-center
-                               hover:border-[#1e3a8a]/30 transition-all duration-300 cursor-default"
-                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(201,168,76,0.05)' }}
-                  >
-                    <span className="text-slate-600 text-xs font-medium">{company}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
 
       {/* ─── NEWS & EVENTS ─── */}
       <section className="py-28 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="flex items-end justify-between mb-12">
             <div>
-              <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Latest</span>
-              <h2 className="font-serif text-5xl font-light text-slate-900">News & Events</h2>
+              <motion.div
+                className="inline-flex items-center gap-2 bg-blue-50 text-blue-800 font-mono text-xs tracking-widest uppercase px-3 py-1.5 rounded-full mb-4 border border-blue-100 shadow-sm"
+                animate={{ boxShadow: ['0px 0px 0px rgba(59,130,246,0)', '0px 0px 15px rgba(59,130,246,0.3)', '0px 0px 0px rgba(59,130,246,0)'] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <div className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                </div>
+                Trending
+              </motion.div>
+              <h2 className="font-serif text-5xl font-light text-slate-900">
+                Trending News <span className="gradient-text italic">&</span> Events
+              </h2>
             </div>
             <Link to="/campus-life" className="text-blue-800 flex items-center gap-2 hover:gap-3 transition-all text-sm">
               View All <ArrowRight size={16} />
             </Link>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {news.map((item, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <motion.div
-                  className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-6 hover:border-[#1e3a8a]/20 
-                             transition-all duration-300 cursor-pointer group"
-                  whileHover={{ x: 4 }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="bg-[#1e3a8a]/10 text-blue-800 text-xs font-mono px-3 py-1 rounded-full border border-[#1e3a8a]/20">
-                      {item.tag}
-                    </span>
-                    <span className="text-gray-600 text-sm">{item.date}</span>
-                  </div>
-                  <h3 className="text-slate-900 font-medium text-lg leading-snug group-hover:text-blue-800 transition-colors">
-                    {item.title}
-                  </h3>
-                  <div className="mt-4 flex items-center gap-2 text-blue-800 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                    Read more <ArrowRight size={14} />
-                  </div>
-                </motion.div>
+                <Link to={item.link}>
+                  <motion.div
+                    className="bg-white rounded-2xl overflow-hidden border border-blue-100 shadow-sm hover:shadow-xl
+                               hover:border-[#1e3a8a]/30 transition-all duration-500 group flex flex-col h-full"
+                    whileHover={{ y: -6 }}
+                  >
+                    {/* Image Container with overlay */}
+                    <div className="relative h-64 w-full overflow-hidden">
+                      <div className="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                      <img 
+                        src={item.image} 
+                        alt={item.title} 
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute top-4 left-4 z-20">
+                        <span className="bg-white/95 backdrop-blur-sm text-blue-800 text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm">
+                          {item.tag}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6 flex flex-col flex-grow">
+                      <div className="text-slate-500 text-sm mb-3 flex items-center gap-2">
+                        <Calendar size={14} />
+                        {item.date}
+                      </div>
+                      <h3 className="text-slate-900 font-serif font-medium text-xl leading-tight mb-4 group-hover:text-blue-700 transition-colors">
+                        {item.title}
+                      </h3>
+                      <div className="mt-auto flex items-center gap-2 text-blue-700 font-medium text-sm">
+                        Read full story 
+                        <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </motion.div>
+                </Link>
               </AnimatedSection>
             ))}
           </div>
