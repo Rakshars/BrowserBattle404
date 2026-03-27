@@ -376,9 +376,6 @@ export default function Home() {
               engineering career.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/admissions" className="btn-primary text-base px-10">
-                Apply Now <ArrowRight size={18} />
-              </Link>
               <Link to="/contact" className="btn-outline text-base px-10">
                 Request Info
               </Link>
