@@ -85,7 +85,7 @@ const typeColors = {
   academic: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
   exam: 'bg-red-500/20 text-red-400 border-red-500/30',
   break: 'bg-green-500/20 text-green-400 border-green-500/30',
-  event: 'bg-[#D32F2F]/20 text-[#D32F2F] border-[#D32F2F]/30',
+  event: 'bg-[#1e3a8a]/20 text-blue-800 border-[#1e3a8a]/30',
 };
 
 export default function Academics() {
@@ -101,35 +101,35 @@ export default function Academics() {
       />
 
       {/* Programs */}
-      <section className="py-24 bg-[#001A33]" id="ug">
+      <section className="py-24 bg-white shadow-sm border-blue-50" id="ug">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Programs</span>
-            <h2 className="font-serif text-5xl font-light text-white">Academic Programs</h2>
+            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Programs</span>
+            <h2 className="font-serif text-5xl font-light text-slate-900">Academic Programs</h2>
           </AnimatedSection>
 
           <div className="space-y-4">
             {programs.map((prog, i) => (
               <AnimatedSection key={prog.tag} delay={i * 0.1}>
-                <div className="bg-[#003366] border border-white/5 rounded-2xl overflow-hidden">
+                <div className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl overflow-hidden">
                   <button
                     className="w-full flex items-center justify-between p-6 text-left group"
                     onClick={() => setOpenProgram(openProgram === i ? null : i)}
                   >
                     <div className="flex items-center gap-5">
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${prog.color} flex items-center justify-center text-white font-bold font-mono text-sm`}>
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${prog.color} flex items-center justify-center text-slate-900 font-bold font-mono text-sm`}>
                         {prog.tag}
                       </div>
                       <div>
-                        <h3 className="text-white font-semibold text-lg">{prog.level}</h3>
-                        <div className="flex gap-4 text-sm text-gray-500 mt-1">
+                        <h3 className="text-slate-900 font-semibold text-lg">{prog.level}</h3>
+                        <div className="flex gap-4 text-sm text-slate-500 mt-1">
                           <span className="flex items-center gap-1"><Clock size={12} /> {prog.duration}</span>
                           <span className="flex items-center gap-1"><Award size={12} /> {prog.seats}</span>
                         </div>
                       </div>
                     </div>
                     <motion.div animate={{ rotate: openProgram === i ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                      <ChevronDown size={20} className="text-gray-500" />
+                      <ChevronDown size={20} className="text-slate-500" />
                     </motion.div>
                   </button>
 
@@ -142,12 +142,12 @@ export default function Academics() {
                         transition={{ duration: 0.35 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 pb-6 border-t border-white/5">
-                          <p className="text-gray-400 mt-4 mb-6">{prog.desc}</p>
+                        <div className="px-6 pb-6 border-t border-blue-100">
+                          <p className="text-slate-600 mt-4 mb-6">{prog.desc}</p>
                           <div className="grid sm:grid-cols-2 gap-2">
                             {prog.courses.map(c => (
-                              <div key={c} className="flex items-center gap-2 text-gray-300 text-sm bg-white/3 rounded-xl px-4 py-2.5 border border-white/5">
-                                <BookOpen size={13} className="text-[#D32F2F] shrink-0" />
+                              <div key={c} className="flex items-center gap-2 text-slate-700 text-sm bg-white/3 rounded-xl px-4 py-2.5 border border-blue-100">
+                                <BookOpen size={13} className="text-blue-800 shrink-0" />
                                 {c}
                               </div>
                             ))}
@@ -156,7 +156,7 @@ export default function Academics() {
                             <button className="btn-primary text-sm px-5 py-2">
                               View Curriculum <ArrowRight size={14} />
                             </button>
-                            <button className="flex items-center gap-2 text-gray-400 border border-white/10 px-5 py-2 rounded-full text-sm hover:border-white/30 transition-colors">
+                            <button className="flex items-center gap-2 text-slate-600 border border-blue-100 px-5 py-2 rounded-full text-sm hover:border-blue-100 transition-colors">
                               <Download size={14} /> Download Brochure
                             </button>
                           </div>
@@ -172,22 +172,22 @@ export default function Academics() {
       </section>
 
       {/* Facilities */}
-      <section className="py-24 bg-[#001122]">
+      <section className="py-24 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Infrastructure</span>
-            <h2 className="font-serif text-5xl font-light text-white">World-Class Facilities</h2>
+            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Infrastructure</span>
+            <h2 className="font-serif text-5xl font-light text-slate-900">World-Class Facilities</h2>
           </AnimatedSection>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {facilities.map((f, i) => (
               <AnimatedSection key={f.name} delay={i * 0.08}>
                 <motion.div
-                  className="bg-[#003366] border border-white/5 rounded-2xl p-6 hover:border-[#D32F2F]/20 transition-all duration-300 group"
+                  className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-6 hover:border-[#1e3a8a]/20 transition-all duration-300 group"
                   whileHover={{ y: -5 }}
                 >
                   <div className="text-4xl mb-4">{f.icon}</div>
-                  <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-[#D32F2F] transition-colors">{f.name}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
+                  <h3 className="text-slate-900 font-semibold text-lg mb-2 group-hover:text-blue-800 transition-colors">{f.name}</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
                 </motion.div>
               </AnimatedSection>
             ))}
@@ -196,21 +196,21 @@ export default function Academics() {
       </section>
 
       {/* Academic Calendar */}
-      <section className="py-24 bg-[#001A33]" id="calendar">
+      <section className="py-24 bg-white shadow-sm border-blue-50" id="calendar">
         <div className="max-w-4xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Schedule</span>
-            <h2 className="font-serif text-5xl font-light text-white">Academic Calendar 2024–25</h2>
+            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Schedule</span>
+            <h2 className="font-serif text-5xl font-light text-slate-900">Academic Calendar 2024–25</h2>
           </AnimatedSection>
           <div className="space-y-3">
             {calendar.map((item, i) => (
               <AnimatedSection key={i} delay={i * 0.05}>
-                <div className="flex items-center gap-4 bg-[#003366] border border-white/5 rounded-xl px-5 py-4">
-                  <Calendar size={16} className="text-[#D32F2F] shrink-0" />
+                <div className="flex items-center gap-4 bg-white shadow-sm border-blue-50 border border-blue-100 rounded-xl px-5 py-4">
+                  <Calendar size={16} className="text-blue-800 shrink-0" />
                   <div className="flex-1">
-                    <div className="text-white font-medium text-sm">{item.event}</div>
+                    <div className="text-slate-900 font-medium text-sm">{item.event}</div>
                   </div>
-                  <div className="text-gray-400 text-sm font-mono">{item.date}</div>
+                  <div className="text-slate-600 text-sm font-mono">{item.date}</div>
                   <span className={`text-xs px-3 py-1 rounded-full border ${typeColors[item.type]} font-mono`}>
                     {item.type}
                   </span>

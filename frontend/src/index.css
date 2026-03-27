@@ -6,8 +6,8 @@
   :root {
     --bmsblue-deep: #003366;
     --bmsblue-mid: #004080;
-    --bmsred: #D32F2F;
-    --bmsred-light: #EF5350;
+    --bmsred: #1e3a8a;
+    --bmsred-light: #3b82f6;
     --cream: #f8f4ed;
     --scroll-progress: 0%;
   }
@@ -21,16 +21,14 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  .dark body {
-    @apply bg-[#001A33] text-gray-100;
-  }
+
 
   * {
     box-sizing: border-box;
   }
 
   ::selection {
-    background-color: #D32F2F;
+    background-color: #1e3a8a;
     color: #003366;
   }
 
@@ -43,21 +41,21 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #D32F2F;
+    background: #1e3a8a;
     border-radius: 3px;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-bmsred-500 text-[#003366] font-semibold px-8 py-3 rounded-full 
-           hover:bg-bmsred-400 transition-all duration-300 hover:scale-105 hover:shadow-lg
-           hover:shadow-bmsred-500/30 inline-flex items-center gap-2;
+    @apply bg-[#1e3a8a] text-white font-semibold px-8 py-3 rounded-full 
+           hover:bg-[#1e40af] transition-all duration-300 hover:scale-105 hover:shadow-lg
+           hover:shadow-blue-500/30 inline-flex items-center gap-2;
   }
 
   .btn-outline {
-    @apply border border-white/40 text-white font-medium px-8 py-3 rounded-full
-           hover:bg-white/10 hover:border-white/70 transition-all duration-300
+    @apply border border-blue-100 text-slate-900 font-medium px-8 py-3 rounded-full
+           hover:bg-white/10 hover:border-blue-100 transition-all duration-300
            backdrop-blur-sm inline-flex items-center gap-2;
   }
 
@@ -66,21 +64,21 @@
   }
 
   .glass-card {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
+    @apply bg-white/10 backdrop-blur-md border border-blue-100 rounded-2xl;
   }
 
   .dark-glass {
-    @apply bg-[#003366]/80 backdrop-blur-md border border-white/10 rounded-2xl;
+    @apply bg-white shadow-sm border-blue-50/80 backdrop-blur-md border border-blue-100 rounded-2xl;
   }
 
   .nav-link {
     @apply text-sm font-medium tracking-wide transition-all duration-200
-           hover:text-bmsred-500 relative;
+           hover:text-[#1e3a8a] relative;
   }
 
   .nav-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-0 h-px bg-bmsred-500 transition-all duration-300;
+    @apply absolute bottom-0 left-0 w-0 h-px bg-[#1e3a8a] transition-all duration-300;
   }
 
   .nav-link:hover::after,
@@ -104,15 +102,15 @@
 
 @layer utilities {
   .text-bmsred {
-    color: #D32F2F;
+    color: #1e3a8a;
   }
 
   .bg-bmsred {
-    background-color: #D32F2F;
+    background-color: #1e3a8a;
   }
 
   .border-bmsred {
-    border-color: #D32F2F;
+    border-color: #1e3a8a;
   }
 
   .text-bmsblue {
@@ -124,7 +122,7 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #D32F2F, #EF5350);
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -157,7 +155,7 @@
 .loading-logo {
   font-family: 'Cormorant Garamond', serif;
   font-size: 2rem;
-  color: #D32F2F;
+  color: #1e3a8a;
   letter-spacing: 0.2em;
   animation: pulse 1.5s ease-in-out infinite;
 }
@@ -172,7 +170,7 @@
 
 .loading-bar-fill {
   height: 100%;
-  background: #D32F2F;
+  background: #1e3a8a;
   animation: loadingBar 2s ease-in-out forwards;
 }
 
@@ -187,7 +185,7 @@
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #D32F2F, #EF5350);
+  background: linear-gradient(90deg, #1e3a8a, #3b82f6);
   z-index: 1000;
   transition: width 0.1s linear;
 }

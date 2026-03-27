@@ -46,7 +46,7 @@ export default function Research() {
       />
 
       {/* Stats */}
-      <section className="py-20 bg-[#003366] border-b border-white/5">
+      <section className="py-20 bg-white shadow-sm border-blue-50 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -64,38 +64,38 @@ export default function Research() {
       </section>
 
       {/* Research Centres */}
-      <section className="py-24 bg-[#001A33]">
+      <section className="py-24 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Centres of Excellence</span>
-            <h2 className="font-serif text-5xl font-light text-white">Research Centres</h2>
+            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Centres of Excellence</span>
+            <h2 className="font-serif text-5xl font-light text-slate-900">Research Centres</h2>
           </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {centers.map((c, i) => (
               <AnimatedSection key={c.name} delay={i * 0.1}>
                 <motion.div
-                  className="bg-[#003366] border border-white/5 rounded-2xl p-7 group hover:border-[#D32F2F]/30 transition-all duration-300"
+                  className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-7 group hover:border-[#1e3a8a]/30 transition-all duration-300"
                   whileHover={{ y: -6 }}
                 >
                   <div className={`h-1 w-16 rounded-full bg-gradient-to-r ${c.color} mb-5`} />
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-[#D32F2F]/10 flex items-center justify-center shrink-0">
-                      <c.icon size={18} className="text-[#D32F2F]" />
+                    <div className="w-10 h-10 rounded-xl bg-[#1e3a8a]/10 flex items-center justify-center shrink-0">
+                      <c.icon size={18} className="text-blue-800" />
                     </div>
                     <div>
-                      <h3 className="text-white font-semibold leading-snug">{c.name}</h3>
-                      <div className="text-[#D32F2F] text-xs font-mono mt-1">{c.dept}</div>
+                      <h3 className="text-slate-900 font-semibold leading-snug">{c.name}</h3>
+                      <div className="text-blue-800 text-xs font-mono mt-1">{c.dept}</div>
                     </div>
                   </div>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-5">{c.desc}</p>
-                  <div className="flex gap-4 pt-4 border-t border-white/5">
+                  <p className="text-slate-500 text-sm leading-relaxed mb-5">{c.desc}</p>
+                  <div className="flex gap-4 pt-4 border-t border-blue-100">
                     <div className="text-center">
-                      <div className="text-white font-semibold">{c.projects}</div>
-                      <div className="text-gray-500 text-xs">Projects</div>
+                      <div className="text-slate-900 font-semibold">{c.projects}</div>
+                      <div className="text-slate-500 text-xs">Projects</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-[#D32F2F] font-semibold font-mono">{c.funding}</div>
-                      <div className="text-gray-500 text-xs">Funding</div>
+                      <div className="text-blue-800 font-semibold font-mono">{c.funding}</div>
+                      <div className="text-slate-500 text-xs">Funding</div>
                     </div>
                   </div>
                 </motion.div>
@@ -106,14 +106,14 @@ export default function Research() {
       </section>
 
       {/* Publications */}
-      <section className="py-24 bg-[#001122]">
+      <section className="py-24 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="flex justify-between items-end mb-12">
             <div>
-              <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Knowledge Output</span>
-              <h2 className="font-serif text-5xl font-light text-white">Recent Publications</h2>
+              <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Knowledge Output</span>
+              <h2 className="font-serif text-5xl font-light text-slate-900">Recent Publications</h2>
             </div>
-            <button className="text-[#D32F2F] flex items-center gap-2 text-sm hover:gap-3 transition-all">
+            <button className="text-blue-800 flex items-center gap-2 text-sm hover:gap-3 transition-all">
               View All <ArrowRight size={14} />
             </button>
           </AnimatedSection>
@@ -121,20 +121,20 @@ export default function Research() {
             {publications.map((p, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
                 <motion.div
-                  className="bg-[#003366] border border-white/5 rounded-2xl p-6 group hover:border-[#D32F2F]/20 transition-all duration-300"
+                  className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-6 group hover:border-[#1e3a8a]/20 transition-all duration-300"
                   whileHover={{ x: 5 }}
                 >
                   <div className="flex items-start justify-between gap-6">
                     <div className="flex-1">
-                      <h3 className="text-white font-medium mb-2 leading-snug group-hover:text-[#D32F2F] transition-colors">{p.title}</h3>
-                      <div className="text-gray-500 text-sm">{p.authors}</div>
+                      <h3 className="text-slate-900 font-medium mb-2 leading-snug group-hover:text-blue-800 transition-colors">{p.title}</h3>
+                      <div className="text-slate-500 text-sm">{p.authors}</div>
                       <div className="flex gap-4 mt-3 text-xs">
-                        <span className="text-[#D32F2F] font-mono">{p.journal}</span>
+                        <span className="text-blue-800 font-mono">{p.journal}</span>
                         <span className="text-gray-600">{p.year}</span>
                       </div>
                     </div>
                     <div className="text-center shrink-0">
-                      <div className="text-white font-serif text-2xl">{p.citations}</div>
+                      <div className="text-slate-900 font-serif text-2xl">{p.citations}</div>
                       <div className="text-gray-600 text-xs">citations</div>
                     </div>
                   </div>
@@ -146,27 +146,27 @@ export default function Research() {
       </section>
 
       {/* Patents */}
-      <section className="py-24 bg-[#001A33]">
+      <section className="py-24 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-12">
-            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Intellectual Property</span>
-            <h2 className="font-serif text-5xl font-light text-white">Patents</h2>
+            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Intellectual Property</span>
+            <h2 className="font-serif text-5xl font-light text-slate-900">Patents</h2>
           </AnimatedSection>
           <div className="grid md:grid-cols-2 gap-5">
             {patents.map((p, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="bg-[#003366] border border-white/5 rounded-2xl p-6">
+                <div className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-6">
                   <div className="flex items-start justify-between gap-4 mb-3">
-                    <h3 className="text-white font-medium leading-snug">{p.title}</h3>
+                    <h3 className="text-slate-900 font-medium leading-snug">{p.title}</h3>
                     <span className={`shrink-0 text-xs px-2 py-1 rounded-full font-mono border ${
                       p.status === 'Granted'
                         ? 'bg-green-500/10 text-green-400 border-green-500/30'
-                        : 'bg-[#D32F2F]/10 text-[#D32F2F] border-[#D32F2F]/30'
+                        : 'bg-[#1e3a8a]/10 text-blue-800 border-[#1e3a8a]/30'
                     }`}>
                       {p.status}
                     </span>
                   </div>
-                  <div className="text-gray-500 text-sm">{p.inventors}</div>
+                  <div className="text-slate-500 text-sm">{p.inventors}</div>
                   <div className="text-gray-600 text-xs mt-2 font-mono">{p.year}</div>
                 </div>
               </AnimatedSection>
@@ -176,17 +176,17 @@ export default function Research() {
       </section>
 
       {/* Collaborations */}
-      <section className="py-24 bg-[#001122]">
+      <section className="py-24 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-12">
-            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Partners</span>
-            <h2 className="font-serif text-5xl font-light text-white">Research Collaborations</h2>
+            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Partners</span>
+            <h2 className="font-serif text-5xl font-light text-slate-900">Research Collaborations</h2>
           </AnimatedSection>
           <div className="flex flex-wrap justify-center gap-4">
             {collaborations.map((name, i) => (
               <AnimatedSection key={name} delay={i * 0.05}>
                 <motion.div
-                  className="bg-[#003366] border border-white/5 rounded-xl px-6 py-3 text-gray-300 text-sm hover:border-[#D32F2F]/30 hover:text-[#D32F2F] transition-all duration-300 cursor-default"
+                  className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-xl px-6 py-3 text-slate-700 text-sm hover:border-[#1e3a8a]/30 hover:text-blue-800 transition-all duration-300 cursor-default"
                   whileHover={{ scale: 1.05 }}
                 >
                   {name}

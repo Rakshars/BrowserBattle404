@@ -64,7 +64,7 @@ export default function Navbar() {
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-[#003366]/95 backdrop-blur-xl shadow-2xl shadow-black/20 border-b border-white/5'
+            ? 'bg-white shadow-sm border-blue-50/95 backdrop-blur-xl shadow-2xl shadow-black/20 border-b border-blue-100'
             : 'bg-transparent'
         }`}
         initial={{ y: -80 }}
@@ -77,8 +77,8 @@ export default function Navbar() {
             <Link to="/" className="flex items-center gap-3 group">
               <img src="/bms-logo.png" alt="BMSCE Logo" className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300 bg-white rounded-full p-1" />
               <div className="hidden sm:block">
-                <div className="text-white font-serif text-lg font-semibold leading-none">BMSCE</div>
-                <div className="text-[#D32F2F] text-[10px] tracking-[0.2em] font-mono">ENGINEERING</div>
+                <div className="text-slate-900 font-serif text-lg font-semibold leading-none">BMSCE</div>
+                <div className="text-blue-800 text-[10px] tracking-[0.2em] font-mono">ENGINEERING</div>
               </div>
             </Link>
 
@@ -95,8 +95,8 @@ export default function Navbar() {
                     to={item.href}
                     className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
                       ${isActive(item.href)
-                        ? 'text-[#D32F2F]'
-                        : 'text-white/80 hover:text-white hover:bg-white/5'
+                        ? 'text-blue-800'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/5'
                       }`}
                   >
                     {item.label}
@@ -107,8 +107,8 @@ export default function Navbar() {
                   <AnimatePresence>
                     {item.dropdown && activeDropdown === item.label && (
                       <motion.div
-                        className="absolute top-full left-0 mt-2 w-64 bg-[#004080]/95 backdrop-blur-xl 
-                                   border border-white/10 rounded-xl overflow-hidden shadow-2xl shadow-black/40"
+                        className="absolute top-full left-0 mt-2 w-64 bg-white shadow-sm border-blue-50/95 backdrop-blur-xl 
+                                   border border-blue-100 rounded-xl overflow-hidden shadow-2xl shadow-black/40"
                         initial={{ opacity: 0, y: -10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -118,8 +118,8 @@ export default function Navbar() {
                           <Link
                             key={sub.href}
                             to={sub.href}
-                            className="block px-4 py-2.5 text-sm text-white/70 hover:text-[#D32F2F] 
-                                       hover:bg-white/5 transition-all duration-150 border-b border-white/5 last:border-0"
+                            className="block px-4 py-2.5 text-sm text-slate-600 hover:text-blue-800 
+                                       hover:bg-white/5 transition-all duration-150 border-b border-blue-100 last:border-0"
                           >
                             {sub.label}
                           </Link>
@@ -132,9 +132,9 @@ export default function Navbar() {
 
               <Link
                 to="/admissions"
-                className="ml-3 bg-[#D32F2F] text-[#003366] font-semibold text-sm px-5 py-2.5 rounded-full
-                           hover:bg-[#EF5350] transition-all duration-300 hover:scale-105 hover:shadow-lg
-                           hover:shadow-[#D32F2F]/30"
+                className="ml-3 bg-[#1e3a8a] text-white font-semibold text-sm px-5 py-2.5 rounded-full
+                           hover:bg-[#3b82f6] transition-all duration-300 hover:scale-105 hover:shadow-lg
+                           hover:shadow-[#1e3a8a]/30"
               >
                 Apply Now
               </Link>
@@ -142,7 +142,7 @@ export default function Navbar() {
 
             {/* Mobile toggle */}
             <button
-              className="lg:hidden text-white p-2 rounded-lg hover:bg-white/10 transition"
+              className="lg:hidden text-slate-900 p-2 rounded-lg hover:bg-white/10 transition"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -155,7 +155,7 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-[#003366]/98 backdrop-blur-xl pt-20"
+            className="fixed inset-0 z-40 bg-white shadow-sm border-blue-50/98 backdrop-blur-xl pt-20"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -173,8 +173,8 @@ export default function Navbar() {
                     to={item.href}
                     className={`block px-4 py-3 rounded-xl text-lg font-medium transition-all
                       ${isActive(item.href)
-                        ? 'text-[#D32F2F] bg-[#D32F2F]/10'
-                        : 'text-white/80 hover:text-white hover:bg-white/5'
+                        ? 'text-blue-800 bg-[#1e3a8a]/10'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/5'
                       }`}
                     onClick={() => setMobileOpen(false)}
                   >
@@ -185,7 +185,7 @@ export default function Navbar() {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
                 <Link
                   to="/admissions"
-                  className="mt-4 block text-center bg-[#D32F2F] text-[#003366] font-bold py-4 rounded-full"
+                  className="mt-4 block text-center bg-[#1e3a8a] text-white font-bold py-4 rounded-full"
                   onClick={() => setMobileOpen(false)}
                 >
                   Apply Now

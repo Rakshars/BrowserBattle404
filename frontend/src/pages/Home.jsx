@@ -75,9 +75,8 @@ export default function Home() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           />
-          {/* Gradient Overlay for text readability */}
-          <div className="absolute inset-0 hero-gradient opacity-70 mix-blend-overlay" />
-          <div className="absolute inset-0 bg-[#001A33]/50" />
+          {/* Neutral Gradient Overlay for text readability */}
+          <div className="absolute inset-0 bg-neutral-900/40" />
 
           {/* Animated particles */}
           <div className="absolute inset-0">
@@ -98,7 +97,7 @@ export default function Home() {
           </div>
 
           {/* Decorative orbs */}
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#D32F2F]/8 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#1e3a8a]/8 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 left-1/6 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl" />
 
           {/* Grid overlay */}
@@ -113,7 +112,7 @@ export default function Home() {
           />
 
           {/* Bottom fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#001A33] to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-neutral-900/70 to-transparent" />
         </motion.div>
 
         {/* Hero Content */}
@@ -123,8 +122,8 @@ export default function Home() {
         >
           {/* Pill badge */}
           <motion.div
-            className="inline-flex items-center gap-2 bg-[#D32F2F]/10 border border-[#D32F2F]/30 
-                       text-[#D32F2F] text-xs font-mono tracking-widest px-4 py-2 rounded-full mb-8"
+            className="inline-flex items-center gap-2 bg-white/10 border border-white/30 backdrop-blur-sm
+                       text-white text-xs font-mono tracking-widest px-4 py-2 rounded-full mb-8 shadow-md"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
@@ -140,7 +139,7 @@ export default function Home() {
             transition={{ delay: 0.5, duration: 0.9 }}
           >
             BMS College of{' '}
-            <span className="gradient-text font-semibold italic">Engineering</span>
+            <span className="text-blue-100 font-semibold italic drop-shadow-lg">Engineering</span>
           </motion.h1>
 
           {/* Animated tagline */}
@@ -148,7 +147,7 @@ export default function Home() {
             <AnimatePresence mode="wait">
               <motion.p
                 key={taglineIdx}
-                className="text-xl md:text-2xl text-white/70 font-light tracking-wide"
+                className="text-xl md:text-2xl text-white/90 drop-shadow-md font-light tracking-wide"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -175,7 +174,7 @@ export default function Home() {
 
           {/* Scroll indicator */}
           <motion.div
-            className="absolute bottom-[-120px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40"
+            className="absolute bottom-[-120px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
@@ -184,12 +183,12 @@ export default function Home() {
         </motion.div>
 
         {/* Corner accents */}
-        <div className="absolute top-8 left-8 w-24 h-24 border-l-2 border-t-2 border-[#D32F2F]/30 rounded-tl-3xl" />
-        <div className="absolute bottom-8 right-8 w-24 h-24 border-r-2 border-b-2 border-[#D32F2F]/30 rounded-br-3xl" />
+        <div className="absolute top-8 left-8 w-24 h-24 border-l-2 border-t-2 border-[#1e3a8a]/30 rounded-tl-3xl" />
+        <div className="absolute bottom-8 right-8 w-24 h-24 border-r-2 border-b-2 border-[#1e3a8a]/30 rounded-br-3xl" />
       </section>
 
       {/* ─── STATS STRIP ─── */}
-      <section className="bg-[#003366] border-y border-white/5 py-14">
+      <section className="bg-white shadow-sm border-blue-50 border-y border-blue-100 py-14">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
             {[
@@ -199,7 +198,7 @@ export default function Home() {
               { end: 14, label: 'Departments', sublabel: 'UG · PG · PhD' },
             ].map((stat, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="stat-card border-r border-white/5 last:border-0">
+                <div className="stat-card border-r border-blue-100 last:border-0">
                   <AnimatedCounter {...stat} />
                 </div>
               </AnimatedSection>
@@ -209,21 +208,21 @@ export default function Home() {
       </section>
 
       {/* ─── ABOUT TEASER ─── */}
-      <section className="py-28 bg-[#001A33]">
+      <section className="py-28 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <AnimatedSection direction="left">
-              <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">About BMSCE</span>
-              <h2 className="font-serif text-5xl md:text-6xl font-light text-white leading-tight mb-6">
+              <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">About BMSCE</span>
+              <h2 className="font-serif text-5xl md:text-6xl font-light text-slate-900 leading-tight mb-6">
                 A Legacy of{' '}
                 <span className="gradient-text italic">Excellence</span>
               </h2>
-              <p className="text-gray-400 text-lg leading-relaxed mb-6">
+              <p className="text-slate-600 text-lg leading-relaxed mb-6">
                 Founded in 1946 by the visionary Sri B M Sreenivasaiah, BMS College of Engineering stands
                 as one of India's premier engineering institutions. We nurture innovators, problem-solvers,
                 and leaders who shape the future of technology.
               </p>
-              <p className="text-gray-500 leading-relaxed mb-8">
+              <p className="text-slate-500 leading-relaxed mb-8">
                 Accredited with NAAC A+ Grade, our programs combine rigorous academics with hands-on
                 research, industry partnerships, and global exposure to prepare graduates for an increasingly
                 complex world.
@@ -238,16 +237,16 @@ export default function Home() {
                 {features.map(({ icon: Icon, title, desc }, i) => (
                   <motion.div
                     key={title}
-                    className="bg-[#003366] border border-white/5 rounded-2xl p-5 hover:border-[#D32F2F]/30 
-                               hover:bg-[#004080] transition-all duration-300 group"
+                    className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-5 hover:border-[#1e3a8a]/30 
+                               hover:bg-white shadow-sm border-blue-50 transition-all duration-300 group"
                     whileHover={{ scale: 1.02, y: -4 }}
                   >
-                    <div className="w-10 h-10 rounded-xl bg-[#D32F2F]/10 flex items-center justify-center mb-3
-                                   group-hover:bg-[#D32F2F]/20 transition-colors">
-                      <Icon size={18} className="text-[#D32F2F]" />
+                    <div className="w-10 h-10 rounded-xl bg-[#1e3a8a]/10 flex items-center justify-center mb-3
+                                   group-hover:bg-[#1e3a8a]/20 transition-colors">
+                      <Icon size={18} className="text-blue-800" />
                     </div>
-                    <div className="text-white font-semibold text-sm mb-1">{title}</div>
-                    <div className="text-gray-500 text-xs leading-relaxed">{desc}</div>
+                    <div className="text-slate-900 font-semibold text-sm mb-1">{title}</div>
+                    <div className="text-slate-500 text-xs leading-relaxed">{desc}</div>
                   </motion.div>
                 ))}
               </div>
@@ -257,12 +256,12 @@ export default function Home() {
       </section>
 
       {/* ─── DEPARTMENTS ─── */}
-      <section className="py-28 bg-[#001122]">
+      <section className="py-28 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Programs</span>
-            <h2 className="font-serif text-5xl font-light text-white mb-4">Our Departments</h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
+            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Programs</span>
+            <h2 className="font-serif text-5xl font-light text-slate-900 mb-4">Our Departments</h2>
+            <p className="text-slate-600 max-w-xl mx-auto">
               14 cutting-edge departments offering undergraduate, postgraduate, and doctoral programs
             </p>
           </AnimatedSection>
@@ -271,7 +270,7 @@ export default function Home() {
             {departments.map((dept, i) => (
               <AnimatedSection key={dept.code} delay={i * 0.08}>
                 <motion.div
-                  className="dept-card bg-[#003366] border border-white/5"
+                  className="dept-card bg-white shadow-sm border-blue-50 border border-blue-100"
                   whileHover={{ borderColor: 'rgba(201,168,76,0.3)' }}
                 >
                   <Link to="/departments">
@@ -279,12 +278,12 @@ export default function Home() {
                     <div className="p-6">
                       <div className="flex items-start justify-between mb-4">
                         <span className="text-3xl">{dept.icon}</span>
-                        <span className="text-[#D32F2F] font-mono text-xs border border-[#D32F2F]/30 
+                        <span className="text-blue-800 font-mono text-xs border border-[#1e3a8a]/30 
                                         px-2 py-1 rounded-full">{dept.code}</span>
                       </div>
-                      <h3 className="text-white font-semibold text-lg mb-2">{dept.name}</h3>
-                      <p className="text-gray-500 text-sm mb-4">{dept.students} students enrolled</p>
-                      <div className="flex items-center gap-2 text-[#D32F2F] text-sm group-hover:gap-3 transition-all">
+                      <h3 className="text-slate-900 font-semibold text-lg mb-2">{dept.name}</h3>
+                      <p className="text-slate-500 text-sm mb-4">{dept.students} students enrolled</p>
+                      <div className="flex items-center gap-2 text-blue-800 text-sm group-hover:gap-3 transition-all">
                         Explore <ArrowRight size={14} />
                       </div>
                     </div>
@@ -295,7 +294,7 @@ export default function Home() {
           </div>
 
           <AnimatedSection className="text-center mt-12">
-            <Link to="/departments" className="btn-outline border-[#D32F2F]/40 text-[#D32F2F]">
+            <Link to="/departments" className="btn-outline border-[#1e3a8a]/40 text-blue-800">
               View All Departments <ArrowRight size={16} />
             </Link>
           </AnimatedSection>
@@ -303,21 +302,21 @@ export default function Home() {
       </section>
 
       {/* ─── PLACEMENTS HIGHLIGHT ─── */}
-      <section className="py-28 bg-[#003366] relative overflow-hidden">
+      <section className="py-28 bg-white shadow-sm border-blue-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5"
           style={{
-            backgroundImage: `radial-gradient(circle at 50% 50%, #D32F2F 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle at 50% 50%, #1e3a8a 1px, transparent 1px)`,
             backgroundSize: '40px 40px'
           }}
         />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection direction="left">
-              <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Placements</span>
-              <h2 className="font-serif text-5xl font-light text-white leading-tight mb-6">
+              <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Placements</span>
+              <h2 className="font-serif text-5xl font-light text-slate-900 leading-tight mb-6">
                 Where Our <span className="gradient-text italic">Graduates</span> Go
               </h2>
-              <p className="text-gray-400 text-lg leading-relaxed mb-8">
+              <p className="text-slate-600 text-lg leading-relaxed mb-8">
                 Our placement cell works tirelessly to connect students with India's and the world's
                 top employers. With a 95% placement rate in 2024, we're proud of where our alumni have landed.
               </p>
@@ -329,9 +328,9 @@ export default function Home() {
                   { val: '300+', label: 'Recruiting Companies' },
                   { val: '95%', label: 'Placed in 2024' },
                 ].map(item => (
-                  <div key={item.label} className="bg-[#001A33] rounded-xl p-4 border border-white/5">
-                    <div className="text-2xl font-serif text-[#D32F2F] font-semibold">{item.val}</div>
-                    <div className="text-gray-400 text-sm mt-1">{item.label}</div>
+                  <div key={item.label} className="bg-white shadow-sm border-blue-50 rounded-xl p-4 border border-blue-100">
+                    <div className="text-2xl font-serif text-blue-800 font-semibold">{item.val}</div>
+                    <div className="text-slate-600 text-sm mt-1">{item.label}</div>
                   </div>
                 ))}
               </div>
@@ -350,11 +349,11 @@ export default function Home() {
                 ].map(company => (
                   <motion.div
                     key={company}
-                    className="bg-[#001A33] border border-white/5 rounded-xl p-3 text-center
-                               hover:border-[#D32F2F]/30 transition-all duration-300 cursor-default"
+                    className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-xl p-3 text-center
+                               hover:border-[#1e3a8a]/30 transition-all duration-300 cursor-default"
                     whileHover={{ scale: 1.05, backgroundColor: 'rgba(201,168,76,0.05)' }}
                   >
-                    <span className="text-white/60 text-xs font-medium">{company}</span>
+                    <span className="text-slate-600 text-xs font-medium">{company}</span>
                   </motion.div>
                 ))}
               </div>
@@ -364,14 +363,14 @@ export default function Home() {
       </section>
 
       {/* ─── NEWS & EVENTS ─── */}
-      <section className="py-28 bg-[#001A33]">
+      <section className="py-28 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="flex items-end justify-between mb-12">
             <div>
-              <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Latest</span>
-              <h2 className="font-serif text-5xl font-light text-white">News & Events</h2>
+              <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Latest</span>
+              <h2 className="font-serif text-5xl font-light text-slate-900">News & Events</h2>
             </div>
-            <Link to="/campus-life" className="text-[#D32F2F] flex items-center gap-2 hover:gap-3 transition-all text-sm">
+            <Link to="/campus-life" className="text-blue-800 flex items-center gap-2 hover:gap-3 transition-all text-sm">
               View All <ArrowRight size={16} />
             </Link>
           </AnimatedSection>
@@ -380,20 +379,20 @@ export default function Home() {
             {news.map((item, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
                 <motion.div
-                  className="bg-[#003366] border border-white/5 rounded-2xl p-6 hover:border-[#D32F2F]/20 
+                  className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-6 hover:border-[#1e3a8a]/20 
                              transition-all duration-300 cursor-pointer group"
                   whileHover={{ x: 4 }}
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="bg-[#D32F2F]/10 text-[#D32F2F] text-xs font-mono px-3 py-1 rounded-full border border-[#D32F2F]/20">
+                    <span className="bg-[#1e3a8a]/10 text-blue-800 text-xs font-mono px-3 py-1 rounded-full border border-[#1e3a8a]/20">
                       {item.tag}
                     </span>
                     <span className="text-gray-600 text-sm">{item.date}</span>
                   </div>
-                  <h3 className="text-white font-medium text-lg leading-snug group-hover:text-[#D32F2F] transition-colors">
+                  <h3 className="text-slate-900 font-medium text-lg leading-snug group-hover:text-blue-800 transition-colors">
                     {item.title}
                   </h3>
-                  <div className="mt-4 flex items-center gap-2 text-[#D32F2F] text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-4 flex items-center gap-2 text-blue-800 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
                     Read more <ArrowRight size={14} />
                   </div>
                 </motion.div>
@@ -404,17 +403,17 @@ export default function Home() {
       </section>
 
       {/* ─── CTA BANNER ─── */}
-      <section className="py-24 bg-gradient-to-r from-[#003366] via-[#004080] to-[#003366] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#D32F2F]/5" />
-        <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D32F2F]/50 to-transparent" />
-        <div className="absolute left-0 right-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D32F2F]/50 to-transparent" />
+      <section className="py-24 bg-gradient-to-r from-blue-50 via-white to-blue-50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#1e3a8a]/5" />
+        <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[#1e3a8a]/50 to-transparent" />
+        <div className="absolute left-0 right-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#1e3a8a]/50 to-transparent" />
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <AnimatedSection>
-            <h2 className="font-serif text-5xl md:text-6xl font-light text-white mb-6 leading-tight">
+            <h2 className="font-serif text-5xl md:text-6xl font-light text-slate-900 mb-6 leading-tight">
               Begin Your Journey at <span className="gradient-text italic">BMSCE</span>
             </h2>
-            <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
+            <p className="text-slate-600 text-lg mb-10 max-w-2xl mx-auto">
               Applications for 2024-25 academic year are now open. Take the first step toward an extraordinary
               engineering career.
             </p>

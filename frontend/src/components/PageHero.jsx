@@ -22,29 +22,29 @@ export default function PageHero({ title, subtitle, breadcrumb, accent }) {
 
       {/* Radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                      w-[600px] h-[400px] bg-[#D32F2F]/10 rounded-full blur-3xl" />
+                      w-[600px] h-[400px] bg-[#1e3a8a]/10 rounded-full blur-3xl" />
 
       {/* Accent line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D32F2F]/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1e3a8a]/50 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         {/* Breadcrumb */}
         {breadcrumb && (
           <motion.div
-            className="flex items-center gap-2 text-sm text-white/50 mb-6"
+            className="flex items-center gap-2 text-sm text-slate-600 mb-6"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <Link to="/" className="hover:text-[#D32F2F] transition-colors">Home</Link>
+            <Link to="/" className="hover:text-blue-800 transition-colors">Home</Link>
             <ChevronRight size={14} />
-            <span className="text-[#D32F2F]">{breadcrumb}</span>
+            <span className="text-blue-800">{breadcrumb}</span>
           </motion.div>
         )}
 
         {accent && (
           <motion.span
-            className="inline-block text-[#D32F2F] font-mono text-sm tracking-widest uppercase mb-4"
+            className="inline-block text-blue-800 font-mono text-sm tracking-widest uppercase mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -54,7 +54,7 @@ export default function PageHero({ title, subtitle, breadcrumb, accent }) {
         )}
 
         <motion.h1
-          className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-4"
+          className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-slate-900 leading-tight mb-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7 }}
@@ -64,7 +64,7 @@ export default function PageHero({ title, subtitle, breadcrumb, accent }) {
 
         {subtitle && (
           <motion.p
-            className="text-lg text-white/60 max-w-2xl"
+            className="text-lg text-slate-600 max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}

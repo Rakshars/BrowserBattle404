@@ -100,13 +100,13 @@ export default function Departments() {
         accent="Academic Units"
       />
 
-      <section className="py-16 bg-[#001A33]">
+      <section className="py-16 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
             {departments.map((dept, i) => (
               <AnimatedSection key={dept.id} delay={i * 0.07}>
                 <motion.div
-                  className={`bg-[#003366] border ${selected === dept.id ? dept.border : 'border-white/5'} 
+                  className={`bg-white shadow-sm border-blue-50 border ${selected === dept.id ? dept.border : 'border-blue-100'} 
                               rounded-2xl overflow-hidden cursor-pointer transition-all duration-300`}
                   whileHover={{ scale: 1.02, borderColor: 'rgba(201,168,76,0.3)' }}
                   onClick={() => setSelected(selected === dept.id ? null : dept.id)}
@@ -118,24 +118,24 @@ export default function Departments() {
                       <div className="flex items-center gap-3">
                         <span className="text-3xl">{dept.emoji}</span>
                         <div>
-                          <div className="text-[#D32F2F] font-mono text-xs">{dept.code}</div>
-                          <h3 className="text-white font-semibold text-sm leading-snug">{dept.name}</h3>
+                          <div className="text-blue-800 font-mono text-xs">{dept.code}</div>
+                          <h3 className="text-slate-900 font-semibold text-sm leading-snug">{dept.name}</h3>
                         </div>
                       </div>
                       <motion.div
                         animate={{ rotate: selected === dept.id ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <ChevronDown size={16} className="text-gray-500" />
+                        <ChevronDown size={16} className="text-slate-500" />
                       </motion.div>
                     </div>
 
-                    <div className="flex gap-4 mb-4 text-xs text-gray-500">
+                    <div className="flex gap-4 mb-4 text-xs text-slate-500">
                       <span className="flex items-center gap-1"><Users size={12} /> {dept.students} students</span>
                       <span className="flex items-center gap-1"><BookOpen size={12} /> {dept.faculty} faculty</span>
                     </div>
 
-                    <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">{dept.desc}</p>
+                    <p className="text-slate-500 text-sm leading-relaxed line-clamp-2">{dept.desc}</p>
 
                     {/* Expanded content */}
                     <AnimatePresence>
@@ -147,22 +147,22 @@ export default function Departments() {
                           transition={{ duration: 0.3 }}
                           className="overflow-hidden"
                         >
-                          <div className="mt-4 pt-4 border-t border-white/5 space-y-4">
+                          <div className="mt-4 pt-4 border-t border-blue-100 space-y-4">
                             <div>
-                              <div className="text-[#D32F2F] text-xs font-mono mb-2">PROGRAMS OFFERED</div>
+                              <div className="text-blue-800 text-xs font-mono mb-2">PROGRAMS OFFERED</div>
                               {dept.programs.map(p => (
-                                <div key={p} className="text-gray-400 text-sm flex items-center gap-2 mb-1">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-[#D32F2F]" />
+                                <div key={p} className="text-slate-600 text-sm flex items-center gap-2 mb-1">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a]" />
                                   {p}
                                 </div>
                               ))}
                             </div>
 
                             <div>
-                              <div className="text-[#D32F2F] text-xs font-mono mb-2">SPECIALIZATIONS</div>
+                              <div className="text-blue-800 text-xs font-mono mb-2">SPECIALIZATIONS</div>
                               <div className="flex flex-wrap gap-2">
                                 {dept.specializations.map(s => (
-                                  <span key={s} className="bg-white/5 text-gray-400 text-xs px-2 py-1 rounded-full border border-white/10">
+                                  <span key={s} className="bg-white/5 text-slate-600 text-xs px-2 py-1 rounded-full border border-blue-100">
                                     {s}
                                   </span>
                                 ))}
@@ -170,18 +170,18 @@ export default function Departments() {
                             </div>
 
                             <div>
-                              <div className="text-[#D32F2F] text-xs font-mono mb-2">FACILITIES</div>
+                              <div className="text-blue-800 text-xs font-mono mb-2">FACILITIES</div>
                               <div className="grid grid-cols-2 gap-1">
                                 {dept.facilities.map(f => (
-                                  <div key={f} className="text-gray-500 text-xs flex items-center gap-1">
-                                    <span className="text-[#D32F2F]">→</span> {f}
+                                  <div key={f} className="text-slate-500 text-xs flex items-center gap-1">
+                                    <span className="text-blue-800">→</span> {f}
                                   </div>
                                 ))}
                               </div>
                             </div>
 
                             <div className="text-xs text-gray-600">
-                              HoD: <span className="text-gray-400">{dept.hod}</span>
+                              HoD: <span className="text-slate-600">{dept.hod}</span>
                             </div>
                           </div>
                         </motion.div>

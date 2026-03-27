@@ -5,8 +5,8 @@ import { Sun, Moon } from 'lucide-react';
 export default function DarkModeToggle({ darkMode, setDarkMode }) {
   return (
     <motion.button
-      className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-[#003366] dark:bg-[#D32F2F] 
-                 flex items-center justify-center shadow-2xl border border-[#D32F2F]/30 dark:border-[#003366]/30
+      className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-white shadow-sm border-blue-50  
+                 flex items-center justify-center shadow-2xl border border-[#1e3a8a]/30 
                  hover:scale-110 transition-transform duration-200"
       onClick={() => setDarkMode(!darkMode)}
       whileTap={{ scale: 0.9 }}
@@ -27,8 +27,8 @@ function AnimatedIcon({ darkMode }) {
       transition={{ duration: 0.3 }}
     >
       {darkMode
-        ? <Sun size={20} className="text-[#003366]" />
-        : <Moon size={20} className="text-white" />
+        ? <Sun size={20} className="text-white" />
+        : <Moon size={20} className="text-slate-900" />
       }
     </motion.div>
   );

@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
 import LoadingScreen from './components/LoadingScreen';
-import DarkModeToggle from './components/DarkModeToggle';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -20,16 +19,7 @@ import Alumni from './pages/Alumni';
 import Contact from './pages/Contact';
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(true);
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2500);
@@ -43,11 +33,10 @@ export default function App() {
       </AnimatePresence>
 
       {!loading && (
-        <div className={darkMode ? 'dark' : ''}>
-          <div className="min-h-screen bg-white dark:bg-[#001A33] text-gray-900 dark:text-gray-100 transition-colors duration-500">
+        <div>
+          <div className="min-h-screen bg-white text-gray-900 transition-colors duration-500">
             <ScrollProgress />
-            <Navbar darkMode={darkMode} />
-            <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+            <Navbar />
 
             <AnimatePresence mode="wait">
               <Routes>

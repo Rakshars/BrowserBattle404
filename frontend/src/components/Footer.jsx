@@ -4,22 +4,22 @@ import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Youtube, Instagram } 
 
 export default function Footer() {
   return (
-    <footer className="bg-[#001122] border-t border-white/5 text-gray-400">
+    <footer className="bg-white shadow-sm border-blue-50 border-t border-blue-100 text-slate-600">
       {/* Top wave */}
-      <div className="bg-[#001A33] h-px w-full" />
+      <div className="bg-white shadow-sm border-blue-50 h-px w-full" />
 
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D32F2F] to-[#EF5350] 
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#1e3a8a] to-[#3b82f6] 
                               flex items-center justify-center">
-                <span className="text-[#003366] font-serif font-bold text-xl">B</span>
+                <span className="text-white font-serif font-bold text-xl">B</span>
               </div>
               <div>
-                <div className="text-white font-serif text-xl font-semibold">BMSCE</div>
-                <div className="text-[#D32F2F] text-xs tracking-widest font-mono">EST. 1946</div>
+                <div className="text-slate-900 font-serif text-xl font-semibold">BMSCE</div>
+                <div className="text-blue-800 text-xs tracking-widest font-mono">EST. 1946</div>
               </div>
             </div>
             <p className="text-sm leading-relaxed mb-6">
@@ -37,8 +37,8 @@ export default function Footer() {
                 <a
                   key={i}
                   href={href}
-                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center
-                             hover:border-[#D32F2F] hover:text-[#D32F2F] transition-all duration-300 hover:scale-110"
+                  className="w-9 h-9 rounded-full border border-blue-100 flex items-center justify-center
+                             hover:border-[#1e3a8a] hover:text-blue-800 transition-all duration-300 hover:scale-110"
                 >
                   <Icon size={15} />
                 </a>
@@ -48,7 +48,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-6 tracking-wide">Quick Links</h4>
+            <h4 className="text-slate-900 font-semibold mb-6 tracking-wide">Quick Links</h4>
             <ul className="space-y-3">
               {[
                 ['Home', '/'],
@@ -63,7 +63,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link
                     to={href}
-                    className="text-sm hover:text-[#D32F2F] transition-colors duration-200 hover:pl-1"
+                    className="text-sm hover:text-blue-800 transition-colors duration-200 hover:pl-1"
                   >
                     → {label}
                   </Link>
@@ -74,7 +74,7 @@ export default function Footer() {
 
           {/* Academics */}
           <div>
-            <h4 className="text-white font-semibold mb-6 tracking-wide">Academics</h4>
+            <h4 className="text-slate-900 font-semibold mb-6 tracking-wide">Academics</h4>
             <ul className="space-y-3">
               {[
                 ['UG Programs', '/academics#ug'],
@@ -89,7 +89,7 @@ export default function Footer() {
                 <li key={label}>
                   <Link
                     to={href}
-                    className="text-sm hover:text-[#D32F2F] transition-colors duration-200 hover:pl-1"
+                    className="text-sm hover:text-blue-800 transition-colors duration-200 hover:pl-1"
                   >
                     → {label}
                   </Link>
@@ -100,40 +100,40 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold mb-6 tracking-wide">Contact Us</h4>
+            <h4 className="text-slate-900 font-semibold mb-6 tracking-wide">Contact Us</h4>
             <ul className="space-y-4">
               <li className="flex gap-3 text-sm">
-                <MapPin size={16} className="text-[#D32F2F] mt-0.5 shrink-0" />
+                <MapPin size={16} className="text-blue-800 mt-0.5 shrink-0" />
                 <span>Bull Temple Road, Basavanagudi, Bengaluru – 560 019, Karnataka, India</span>
               </li>
               <li className="flex gap-3 text-sm">
-                <Phone size={16} className="text-[#D32F2F] shrink-0" />
+                <Phone size={16} className="text-blue-800 shrink-0" />
                 <span>+91-80-26622130 / 26622131</span>
               </li>
               <li className="flex gap-3 text-sm">
-                <Mail size={16} className="text-[#D32F2F] shrink-0" />
+                <Mail size={16} className="text-blue-800 shrink-0" />
                 <span>principal@bmsce.ac.in</span>
               </li>
             </ul>
 
-            <div className="mt-8 p-4 rounded-xl border border-white/10 bg-white/3">
-              <p className="text-xs text-[#D32F2F] font-mono tracking-wider mb-1">ACCREDITATION</p>
-              <p className="text-sm text-white">NAAC A+ Grade</p>
+            <div className="mt-8 p-4 rounded-xl border border-blue-100 bg-white/3">
+              <p className="text-xs text-blue-800 font-mono tracking-wider mb-1">ACCREDITATION</p>
+              <p className="text-sm text-slate-900">NAAC A+ Grade</p>
               <p className="text-xs mt-1">NBA Accredited • NIRF Ranked</p>
             </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="border-t border-blue-100 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-center">
             © 2024 BMS College of Engineering. All rights reserved. Established 1946.
           </p>
           <div className="flex gap-6 text-xs">
-            <a href="#" className="hover:text-[#D32F2F] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#D32F2F] transition-colors">Terms of Use</a>
-            <a href="#" className="hover:text-[#D32F2F] transition-colors">Sitemap</a>
-            <a href="#" className="hover:text-[#D32F2F] transition-colors">RTI</a>
+            <a href="#" className="hover:text-blue-800 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-blue-800 transition-colors">Terms of Use</a>
+            <a href="#" className="hover:text-blue-800 transition-colors">Sitemap</a>
+            <a href="#" className="hover:text-blue-800 transition-colors">RTI</a>
           </div>
         </div>
       </div>

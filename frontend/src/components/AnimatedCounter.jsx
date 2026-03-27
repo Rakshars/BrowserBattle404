@@ -7,17 +7,17 @@ export default function AnimatedCounter({ end, suffix = '', prefix = '', duratio
 
   return (
     <div ref={ref} className="text-center">
-      <div className="font-serif text-5xl md:text-6xl font-light text-white mb-2">
-        <span className="text-[#D32F2F]">{prefix}</span>
+      <div className="font-serif text-5xl md:text-6xl font-light text-slate-900 mb-2">
+        <span className="text-blue-800">{prefix}</span>
         {inView ? (
           <CountUp end={end} duration={duration} separator="," />
         ) : (
           <span>0</span>
         )}
-        <span className="text-[#D32F2F]">{suffix}</span>
+        <span className="text-blue-800">{suffix}</span>
       </div>
-      <div className="text-white font-medium tracking-wide">{label}</div>
-      {sublabel && <div className="text-white/50 text-sm mt-1">{sublabel}</div>}
+      <div className="text-slate-900 font-medium tracking-wide">{label}</div>
+      {sublabel && <div className="text-slate-600 text-sm mt-1">{sublabel}</div>}
     </div>
   );
 }

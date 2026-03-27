@@ -49,7 +49,7 @@ export default function Students() {
       />
 
       {/* Quick Links */}
-      <section className="py-16 bg-[#003366] border-b border-white/5">
+      <section className="py-16 bg-white shadow-sm border-blue-50 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
@@ -61,13 +61,13 @@ export default function Students() {
               <AnimatedSection key={item.label} delay={i * 0.1}>
                 <motion.a
                   href={item.href}
-                  className="flex items-center gap-3 bg-[#001A33] border border-white/5 rounded-xl px-5 py-4
-                             hover:border-[#D32F2F]/30 transition-all duration-300 group"
+                  className="flex items-center gap-3 bg-white shadow-sm border-blue-50 border border-blue-100 rounded-xl px-5 py-4
+                             hover:border-[#1e3a8a]/30 transition-all duration-300 group"
                   whileHover={{ scale: 1.03 }}
                 >
                   <span className="text-2xl">{item.emoji}</span>
-                  <span className="text-white font-medium text-sm group-hover:text-[#D32F2F] transition-colors">{item.label}</span>
-                  <ArrowRight size={14} className="ml-auto text-gray-600 group-hover:text-[#D32F2F] transition-colors" />
+                  <span className="text-slate-900 font-medium text-sm group-hover:text-blue-800 transition-colors">{item.label}</span>
+                  <ArrowRight size={14} className="ml-auto text-gray-600 group-hover:text-blue-800 transition-colors" />
                 </motion.a>
               </AnimatedSection>
             ))}
@@ -76,27 +76,27 @@ export default function Students() {
       </section>
 
       {/* Services */}
-      <section className="py-24 bg-[#001A33]">
+      <section className="py-24 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Support</span>
-            <h2 className="font-serif text-5xl font-light text-white">Student Services</h2>
+            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Support</span>
+            <h2 className="font-serif text-5xl font-light text-slate-900">Student Services</h2>
           </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((svc, i) => (
               <AnimatedSection key={svc.title} delay={i * 0.1}>
                 <motion.div
-                  className="bg-[#003366] border border-white/5 rounded-2xl p-6 h-full group hover:border-[#D32F2F]/30 transition-all duration-300"
+                  className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-6 h-full group hover:border-[#1e3a8a]/30 transition-all duration-300"
                   whileHover={{ y: -5 }}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#D32F2F]/10 flex items-center justify-center mb-4 group-hover:bg-[#D32F2F]/20 transition-colors">
-                    <svc.icon size={18} className="text-[#D32F2F]" />
+                  <div className="w-10 h-10 rounded-xl bg-[#1e3a8a]/10 flex items-center justify-center mb-4 group-hover:bg-[#1e3a8a]/20 transition-colors">
+                    <svc.icon size={18} className="text-blue-800" />
                   </div>
-                  <h3 className="text-white font-semibold mb-4 group-hover:text-[#D32F2F] transition-colors">{svc.title}</h3>
+                  <h3 className="text-slate-900 font-semibold mb-4 group-hover:text-blue-800 transition-colors">{svc.title}</h3>
                   <ul className="space-y-2">
                     {svc.items.map(item => (
-                      <li key={item} className="flex items-center gap-2 text-gray-500 text-sm">
-                        <span className="w-1 h-1 rounded-full bg-[#D32F2F] shrink-0" />
+                      <li key={item} className="flex items-center gap-2 text-slate-500 text-sm">
+                        <span className="w-1 h-1 rounded-full bg-[#1e3a8a] shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -109,23 +109,23 @@ export default function Students() {
       </section>
 
       {/* Resources */}
-      <section className="py-24 bg-[#001122]">
+      <section className="py-24 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Resources</span>
-            <h2 className="font-serif text-5xl font-light text-white">Student Resources</h2>
+            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Resources</span>
+            <h2 className="font-serif text-5xl font-light text-slate-900">Student Resources</h2>
           </AnimatedSection>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {resources.map((r, i) => (
               <AnimatedSection key={r.title} delay={i * 0.08}>
                 <motion.div
-                  className="bg-[#003366] border border-white/5 rounded-2xl p-6 flex items-start gap-4 group hover:border-[#D32F2F]/30 transition-all duration-300 cursor-pointer"
+                  className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-6 flex items-start gap-4 group hover:border-[#1e3a8a]/30 transition-all duration-300 cursor-pointer"
                   whileHover={{ x: 5 }}
                 >
                   <span className="text-3xl shrink-0">{r.icon}</span>
                   <div>
-                    <h3 className="text-white font-semibold mb-1 group-hover:text-[#D32F2F] transition-colors">{r.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">{r.desc}</p>
+                    <h3 className="text-slate-900 font-semibold mb-1 group-hover:text-blue-800 transition-colors">{r.title}</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">{r.desc}</p>
                   </div>
                 </motion.div>
               </AnimatedSection>
@@ -135,23 +135,23 @@ export default function Students() {
       </section>
 
       {/* Student Achievements */}
-      <section className="py-24 bg-[#001A33]">
+      <section className="py-24 bg-white shadow-sm border-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="text-center mb-16">
-            <span className="text-[#D32F2F] font-mono text-sm tracking-widest uppercase block mb-4">Pride</span>
-            <h2 className="font-serif text-5xl font-light text-white">Student Achievements</h2>
+            <span className="text-blue-800 font-mono text-sm tracking-widest uppercase block mb-4">Pride</span>
+            <h2 className="font-serif text-5xl font-light text-slate-900">Student Achievements</h2>
           </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {achievements.map((a, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
-                <motion.div className="bg-[#003366] border border-white/5 rounded-2xl p-6 hover:border-[#D32F2F]/20 transition-all duration-300" whileHover={{ y: -4 }}>
+                <motion.div className="bg-white shadow-sm border-blue-50 border border-blue-100 rounded-2xl p-6 hover:border-[#1e3a8a]/20 transition-all duration-300" whileHover={{ y: -4 }}>
                   <div className="flex items-center gap-3 mb-3">
                     <div className="text-2xl">🏆</div>
-                    <span className="text-[#D32F2F] text-sm font-mono">{a.year}</span>
+                    <span className="text-blue-800 text-sm font-mono">{a.year}</span>
                   </div>
-                  <h3 className="text-white font-semibold mb-1">{a.name}</h3>
-                  <div className="text-gray-400 text-sm">{a.event}</div>
-                  <div className="mt-3 inline-flex items-center gap-2 bg-[#D32F2F]/10 text-[#D32F2F] text-xs px-3 py-1 rounded-full border border-[#D32F2F]/20">
+                  <h3 className="text-slate-900 font-semibold mb-1">{a.name}</h3>
+                  <div className="text-slate-600 text-sm">{a.event}</div>
+                  <div className="mt-3 inline-flex items-center gap-2 bg-[#1e3a8a]/10 text-blue-800 text-xs px-3 py-1 rounded-full border border-[#1e3a8a]/20">
                     <Award size={11} /> {a.award}
                   </div>
                 </motion.div>
@@ -162,17 +162,17 @@ export default function Students() {
       </section>
 
       {/* Anti-Ragging */}
-      <section className="py-24 bg-[#001122]">
+      <section className="py-24 bg-white shadow-sm border-blue-50">
         <div className="max-w-4xl mx-auto px-6">
           <AnimatedSection>
-            <div className="bg-[#003366] border border-red-500/20 rounded-2xl p-8">
+            <div className="bg-white shadow-sm border-blue-50 border border-red-500/20 rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
                 <Shield size={22} className="text-red-400" />
-                <h2 className="font-serif text-3xl text-white font-light">Anti-Ragging Policy</h2>
+                <h2 className="font-serif text-3xl text-slate-900 font-light">Anti-Ragging Policy</h2>
               </div>
               <ul className="space-y-3">
                 {antiRagging.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-gray-300 text-sm">
+                  <li key={i} className="flex items-start gap-3 text-slate-700 text-sm">
                     <span className="text-red-400 mt-0.5 shrink-0">→</span>
                     {item}
                   </li>
